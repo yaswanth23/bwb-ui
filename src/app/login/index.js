@@ -1,11 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import "./login.styles.css";
+import styles from "./login.module.css";
 
 const LoginPage = () => {
   return (
     <>
-      <div className="main_container">welcome to  login page</div>
+      <div className={styles.main_container}>
+        <div className={styles.login_container}>
+          <div className={styles.login_header}>Login</div>
+        </div>
+      </div>
     </>
   );
 };

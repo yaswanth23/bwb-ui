@@ -1,0 +1,17 @@
+.main_container {
+  background-color: #075bed;
+}
+.login_container {
+  max-height: 100vh;
+  height: 100vh;
+  background: url("../../../public/assets/svg/login_bg.svg") no-repeat center
+    center fixed;
+  background-size: cover;
+}
+.login_header {
+  color: var(--white-color);
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+}
