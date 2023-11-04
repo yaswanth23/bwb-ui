@@ -10,8 +10,33 @@
 }
 .login_header {
   color: var(--white-color);
-  font-size: 2.5rem;
+  padding-top: 7rem;
+  font-size: 2rem;
   font-weight: 700;
   text-align: center;
   text-transform: uppercase;
+}
+.login_section {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login_section_form {
+  padding: 2rem 4rem;
+  width: 35rem;
+  background-color: var(--white-color);
+  border-radius: 0.5rem;
+}
+.login_sec_input {
+  padding: 0.7rem 0;
+  font-size: 1rem;
+  outline: none;
+  width: 100%;
+  border: none;
+  border-bottom: 0.15rem solid var(--black-color);
+}
+.login_sec_input::placeholder {
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
 }
