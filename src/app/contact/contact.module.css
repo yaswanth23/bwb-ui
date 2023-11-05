@@ -74,3 +74,12 @@
   border-radius: 1.5rem;
   height: 3rem;
 }
+.error_message_container {
+  padding-top: 1rem;
+}
+.error_message {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--error-color);
+}
