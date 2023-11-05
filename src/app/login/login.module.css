@@ -1,42 +1,87 @@
 .main_container {
-  background-color: #075bed;
-}
-.login_container {
   max-height: 100vh;
   height: 100vh;
   background: url("../../../public/assets/svg/login_bg.svg") no-repeat center
     center fixed;
+  background-color: #075bed;
   background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.login_header {
+.header {
   color: var(--white-color);
-  padding-top: 7rem;
   font-size: 2rem;
   font-weight: 700;
   text-align: center;
   text-transform: uppercase;
 }
-.login_section {
+.section {
   margin-top: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.login_section_form {
+.section_form {
   padding: 2rem 4rem;
   width: 35rem;
   background-color: var(--white-color);
   border-radius: 0.5rem;
 }
-.login_sec_input {
+.sec_input {
   padding: 0.7rem 0;
   font-size: 1rem;
   outline: none;
   width: 100%;
   border: none;
-  border-bottom: 0.15rem solid var(--black-color);
+  letter-spacing: 1px;
+  font-family: "Montserrat", sans-serif;
 }
-.login_sec_input::placeholder {
+.sec_input::placeholder {
   font-size: 1rem;
-  letter-spacing: 0.1rem;
+  letter-spacing: 1px;
+  font-family: "Montserrat", sans-serif;
+}
+.input_section {
+  margin: 2rem 0;
+  display: flex;
+  align-items: center;
+  border-bottom: 0.12rem solid var(--black-color);
+}
+.eye_icon_section {
+  cursor: pointer;
+}
+.button_container {
+  padding-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login_button {
+  font-family: "Montserrat", sans-serif;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  text-decoration: none;
+  cursor: pointer;
+  width: 10rem;
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: none;
+  border-radius: 1.5rem;
+  height: 2.5rem;
+}
+.contact_us_container {
+  margin-top: 2rem;
+}
+.contact_us_container p {
+  font-size: 0.8rem;
+}
+.contact_us_link {
+  text-decoration: none;
+  font-weight: 600;
+  color: #6aa4eb;
 }
