@@ -26,6 +26,51 @@
   object-fit: contain;
 }
 .right_section {
+  padding: 2rem 2rem 1rem 2rem;
+  width: 50%;
 }
 .contact_us_heading {
+  color: var(--primary-color);
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.form_container {
+  margin-top: 3rem;
+}
+.form_input {
+  padding: 0.7rem 0;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  outline: none;
+  width: 100%;
+  border: none;
+  letter-spacing: 1px;
+  font-family: "Montserrat", sans-serif;
+  border-bottom: 0.12rem solid var(--black-color);
+}
+.form_input::placeholder {
+  font-size: 1rem;
+  letter-spacing: 1px;
+  font-family: "Montserrat", sans-serif;
+}
+.button_container {
+  padding-top: 1rem;
+}
+.submit_button {
+  font-family: "Montserrat", sans-serif;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  text-decoration: none;
+  cursor: pointer;
+  width: 13rem;
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: none;
+  border-radius: 1.5rem;
+  height: 3rem;
 }
