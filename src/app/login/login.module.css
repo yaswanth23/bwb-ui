@@ -3,7 +3,7 @@
   height: 100vh;
   background: url("../../../public/assets/svg/login_bg.svg") no-repeat center
     center fixed;
-  background-color: #075bed;
+  background-color: var(--bg-color);
   background-size: cover;
   display: flex;
   justify-content: center;

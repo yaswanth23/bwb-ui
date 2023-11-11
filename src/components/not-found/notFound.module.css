@@ -1,0 +1,45 @@
+.container {
+  max-height: 100vh;
+  height: 100vh;
+  background: url("../../../public/assets/svg/contact_us_bg.svg") no-repeat
+    center center fixed;
+  background-color: var(--bg-color);
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.section {
+  background-color: var(--white-color);
+  width: 40rem;
+  height: 10rem;
+  border-radius: 0.5rem;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.section_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.section_text {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.home_button {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  width: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: none;
+  border-radius: 1.5rem;
+  height: 2.5rem;
+}

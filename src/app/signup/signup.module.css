@@ -1,0 +1,32 @@
+.container {
+  max-height: 100vh;
+  height: 100vh;
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+}
+.section_one {
+  background: url("../../../public/assets/svg/sign_up_bg.svg");
+  background-color: var(--bg-color);
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 5rem;
+}
+.header_text {
+  color: var(--white-color);
+  font-size: 4rem;
+}
+.header_text span {
+  color: #03c3ff;
+}
+.sub_heading {
+  margin-top: 1rem;
+  font-size: 2rem;
+  color: var(--white-color);
+}
+.section_two {
+  width: 40%;
+  background-color: var(--white-color);
+}
