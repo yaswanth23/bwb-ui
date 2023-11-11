@@ -56,6 +56,24 @@ const SignUpPage = () => {
                   Sign up in to the world of <span>ease living</span>
                 </h1>
                 <p className={styles.sub_heading}>Our Advantages</p>
+                <ul>
+                  <li>
+                    <div className={styles.rect_icon}></div>Partnering for
+                    Healthier Tomorrows
+                  </li>
+                  <li>
+                    <div className={styles.rect_icon}></div>Supplying Wellness,
+                    Enhancing Lives
+                  </li>
+                  <li>
+                    <div className={styles.rect_icon}></div>A Vital Link in
+                    Healthcare
+                  </li>
+                  <li>
+                    <div className={styles.rect_icon}></div>Beyond Supplies, We
+                    Deliver Care
+                  </li>
+                </ul>
               </div>
             </div>
             <div className={styles.section_two}>2</div>

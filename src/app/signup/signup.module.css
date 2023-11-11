@@ -26,6 +26,24 @@
   font-size: 2rem;
   color: var(--white-color);
 }
+.rect_icon {
+  width: 2rem;
+  height: 0.7rem;
+  border-radius: 0.6rem;
+  background-color: #d9d9d9;
+  margin-right: 0.5rem;
+}
+.section_main ul {
+  margin-top: 1rem;
+}
+.section_main ul li {
+  padding: 1rem 0;
+  font-size: 1.2rem;
+  color: var(--white-color);
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+}
 .section_two {
   width: 40%;
   background-color: var(--white-color);
