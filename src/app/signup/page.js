@@ -76,7 +76,7 @@ const SignUpPage = () => {
                 </ul>
               </div>
             </div>
-            <div className={styles.section_two}>2</div>
+            <div className={styles.section_two}>singup</div>
           </div>
         </>
       )}
