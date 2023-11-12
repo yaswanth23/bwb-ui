@@ -2,6 +2,8 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import styles from "./signup.module.css";
 
 import NotFoundPage from "@/components/not-found/notFound";
@@ -150,6 +152,10 @@ const SignUpPage = () => {
             setErrorMessage(data?.message);
           }
           if (data?.data?.statusCode === 200) {
+            toast.success("Signup request sent successfully", {
+              position: toast.POSITION.TOP_CENTER,
+              autoClose: 3000,
+            });
             router.push("/");
           }
         })
@@ -267,6 +273,14 @@ const SignUpPage = () => {
           </div>
         </>
       )}
+      <ToastContainer
+        toastStyle={{
+          borderRadius: "0.5rem",
+          fontFamily: "Montserrat",
+          color: "#000000",
+          fontSize: "1rem",
+        }}
+      />
     </>
   );
 };
