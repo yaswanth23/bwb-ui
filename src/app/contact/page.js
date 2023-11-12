@@ -49,7 +49,10 @@ const ContactPage = () => {
 
   const handleFormSubmit = () => {
     const endpoint = apiUrl + "/misc/contact-us";
-    if (!data.mobileNumber || data.mobileNumber.length > 10) {
+    if (
+      !data.mobileNumber ||
+      (data.mobileNumber.length > 10 && data.mobileNumber.length < 10)
+    ) {
       setErrorMessage("Please Enter a valid Mobile Number");
     }
 
