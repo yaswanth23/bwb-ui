@@ -24,7 +24,6 @@ export const userReducer = (state = USER_INITIAL_STATE, action = {}) => {
         ...state,
         userData: {},
         isUserloggedIn: false,
-        capturedUserLocation: null,
       };
     default:
       return state;

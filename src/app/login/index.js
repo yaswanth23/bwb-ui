@@ -3,10 +3,13 @@ import React, { useState } from "react";
 import styles from "./login.module.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { storeUserData, changeIsLoggedInUser } from "@/store/user/user.action";
 
 const LoginPage = () => {
   const apiUrl =
     "https://qar5m2k5ra.execute-api.ap-south-1.amazonaws.com/dev/v2";
+  const dispatch = useDispatch();
   const [userIdentifier, setUserIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -48,6 +51,8 @@ const LoginPage = () => {
         .then((data) => {
           if (data?.data?.statusCode === 200) {
             setErrorMessage("");
+            dispatch(changeIsLoggedInUser());
+            dispatch(storeUserData(data.data.userDetails));
           }
 
           if (data?.statusCode === 401) {
