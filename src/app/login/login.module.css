@@ -85,3 +85,12 @@
   font-weight: 600;
   color: #6aa4eb;
 }
+.error_message_container {
+  padding-top: 1rem;
+}
+.error_message {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--error-color);
+}
