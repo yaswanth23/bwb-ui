@@ -1,6 +1,8 @@
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
+import { Provider } from "react-redux";
 import "./globals.css";
+import { store } from "../store/store";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
