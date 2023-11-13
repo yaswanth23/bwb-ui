@@ -114,3 +114,16 @@
   border-radius: 1.5rem;
   height: 3rem;
 }
+.login_container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+.login_container p {
+  font-size: 0.8rem;
+}
+.login_link {
+  text-decoration: none;
+  font-weight: 600;
+  color: #6aa4eb;
+}

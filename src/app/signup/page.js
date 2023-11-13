@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./signup.module.css";
@@ -268,6 +269,14 @@ const SignUpPage = () => {
                 >
                   Sign Up
                 </button>
+              </div>
+              <div className={styles.login_container}>
+                <p>
+                  Already have an account?{" "}
+                  <Link className={styles.login_link} href="/">
+                    Login
+                  </Link>
+                </p>
               </div>
             </div>
           </div>
