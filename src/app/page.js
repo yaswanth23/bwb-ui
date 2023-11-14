@@ -1,9 +1,14 @@
+"use client";
+import React from "react";
+import { useSelector } from "react-redux";
+import { selectIsUserLoggedIn } from "@/store/user/user.selector";
 import LoginPage from "./login";
+import HomePage from "./home/page";
 
-export default function Home() {
-  return (
-    <main>
-      <LoginPage />
-    </main>
-  );
-}
+const Home = () => {
+  const isUserLoggedIn = useSelector(selectIsUserLoggedIn);
+
+  return <main>{isUserLoggedIn ? <HomePage /> : <LoginPage />}</main>;
+};
+
+export default Home;
