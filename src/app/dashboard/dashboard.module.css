@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+}
+.menu {
+  flex: 1;
+  background: var(--primary-color);
+  padding: 1rem;
+  min-height: 100vh;
+}
+.content {
+  flex: 5;
+  padding: 1rem;
+  background-color: var(--light-white-color);
+}

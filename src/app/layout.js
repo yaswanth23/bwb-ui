@@ -1,6 +1,6 @@
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
-import "./globals.css";
+import "./ui/globals.css";
 import { ReduxProvider } from "@/store/provider";
 
 const montserrat = Montserrat({ subsets: ["latin"] });

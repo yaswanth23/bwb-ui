@@ -1,0 +1,35 @@
+.container {
+  position: sticky;
+}
+.logo_container {
+  margin-bottom: 4rem;
+}
+.logo_content {
+  font-family: "Montserrat", sans-serif;
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: var(--white-color);
+}
+.logo_sub_content {
+  font-weight: 600;
+}
+.list {
+  list-style: none;
+}
+.item_name {
+  color: var(--white-color);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.item_name:hover,
+.active {
+  background-color: var(--light-white-color);
+  color: var(--black-color);
+}
