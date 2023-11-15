@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "dotenv -e .env.development next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build-staging": "dotenv -e .env.staging next build",
+    "build-dev": "dotenv -e .env.development next build",
+    "build-prod": "dotenv -e .env.production next build"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
@@ -22,6 +25,7 @@
     "redux-persist": "^6.0.0"
   },
   "devDependencies": {
+    "dotenv-cli": "^7.3.0",
     "eslint": "^8",
     "eslint-config-next": "14.0.1"
   }
