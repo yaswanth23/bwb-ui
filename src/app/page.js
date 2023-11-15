@@ -13,6 +13,7 @@ const Home = () => {
   const pathname = usePathname();
 
   useEffect(() => {
+    console.log(isUserLoggedIn)
     if (!isUserLoggedIn) {
       router.push("/login");
     }
