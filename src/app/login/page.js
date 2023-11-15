@@ -1,20 +1,30 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./login.module.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
 import { storeUserData, changeIsLoggedInUser } from "@/store/user/user.action";
+import { selectIsUserLoggedIn } from "@/store/user/user.selector";
 
 const LoginPage = () => {
   const apiUrl =
     "https://qar5m2k5ra.execute-api.ap-south-1.amazonaws.com/dev/v2";
   const dispatch = useDispatch();
+  const router = useRouter();
+  const isUserLoggedIn = useSelector(selectIsUserLoggedIn);
   const [userIdentifier, setUserIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    if (isUserLoggedIn) {
+      router.push("/dashboard");
+    }
+  }, [isUserLoggedIn, router]);
 
   const handleInputUserIdentifier = (event) => {
     setUserIdentifier(event.target.value);
@@ -54,6 +64,7 @@ const LoginPage = () => {
             setErrorMessage("");
             dispatch(changeIsLoggedInUser());
             dispatch(storeUserData(data.data.userDetails));
+            router.push("/dashboard");
           }
 
           if (data?.statusCode === 401) {

@@ -33,3 +33,23 @@
   background-color: var(--light-white-color);
   color: var(--black-color);
 }
+.home_icon,
+.event_icon,
+.stats_icon,
+.exit_icon {
+  font-size: 1.2rem;
+}
+.logout_button_container {
+  padding: 1rem;
+}
+.logout_button {
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--light-white-color);
+}
