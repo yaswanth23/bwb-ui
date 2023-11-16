@@ -6,9 +6,13 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import { useDispatch } from "react-redux";
+import { storeUserData, changeIsLoggedInUser } from "@/store/user/user.action";
+import { loginUser } from "@/utils/api/auth";
 
 const Login = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const [userIdentifier, setUserIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -38,6 +42,9 @@ const Login = () => {
         redirect: false,
       });
       if (!res?.error) {
+        const user = await loginUser(userIdentifier, password);
+        dispatch(changeIsLoggedInUser());
+        dispatch(storeUserData(user.data.userDetails));
         router.push("/dashboard");
         router.refresh();
       } else {

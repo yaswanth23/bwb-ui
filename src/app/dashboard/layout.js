@@ -9,6 +9,7 @@ const Layout = async ({ children }) => {
   if (!session) {
     redirect("/login");
   }
+
   return (
     <>
       <div className={styles.container}>
