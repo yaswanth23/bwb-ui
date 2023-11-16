@@ -10,6 +10,7 @@ import Link from "next/link";
 import styles from "./sidebar.module.css";
 import { usePathname, useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
+import { signOut } from "next-auth/react";
 import { changeIsLoggedOutUser } from "@/store/user/user.action";
 
 const menuItems = [
@@ -37,7 +38,8 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     dispatch(changeIsLoggedOutUser());
-    router.push("/");
+    router.push("/login");
+    signOut();
   };
 
   return (

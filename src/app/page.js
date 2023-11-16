@@ -1,29 +1,16 @@
-"use client";
+import React from "react";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { selectIsUserLoggedIn } from "@/store/user/user.selector";
-import { useRouter, usePathname, redirect } from "next/navigation";
-import LoginPage from "./login/page";
-import Layout from "./dashboard/layout";
+const Home = async () => {
+  const session = await getServerSession();
+  if (session) {
+    redirect("/dashboard");
+  } else {
+    redirect("/login");
+  }
 
-const Home = () => {
-  const isUserLoggedIn = useSelector(selectIsUserLoggedIn);
-  const router = useRouter();
-  const pathname = usePathname();
-
-  useEffect(() => {
-    console.log(isUserLoggedIn)
-    if (!isUserLoggedIn) {
-      router.push("/login");
-    }
-
-    if (isUserLoggedIn && pathname === "/") {
-      redirect("/dashboard");
-    }
-  }, [isUserLoggedIn, router, pathname]);
-
-  return <main>{isUserLoggedIn ? <Layout /> : <LoginPage />}</main>;
+  return <main>Not found</main>;
 };
 
 export default Home;

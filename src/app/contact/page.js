@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
 import styles from "./contact.module.css";
 import ContactUsSideImage from "../../../public/assets/images/tablets.png";
+import { contactUs } from "@/utils/api/misc";
 
 const hasNumberCheck = (text) => {
   const regex = /\d$/;
@@ -18,8 +19,6 @@ const hasCharacterCheck = (text) => {
 };
 
 const ContactPage = () => {
-  const apiUrl =
-    "https://qar5m2k5ra.execute-api.ap-south-1.amazonaws.com/dev/v2";
   const [errorMessage, setErrorMessage] = useState("");
 
   const [data, updateData] = useReducer(
@@ -48,8 +47,7 @@ const ContactPage = () => {
     return regex.test(email);
   };
 
-  const handleFormSubmit = () => {
-    const endpoint = apiUrl + "/misc/contact-us";
+  const handleFormSubmit = async () => {
     if (
       !data.mobileNumber ||
       (data.mobileNumber.length > 10 && data.mobileNumber.length < 10)
@@ -85,18 +83,7 @@ const ContactPage = () => {
         emailId: data.emailId,
         mobileNumber: Number(data.mobileNumber),
       };
-      fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(reqData),
-      })
-        .then((response) => response.json())
-        .then((data) => {})
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+      await contactUs(reqData);
       updateData({
         fullName: "",
         organisationName: "",

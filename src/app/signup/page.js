@@ -22,8 +22,7 @@ const hasCharacterCheck = (text) => {
 
 const SignUpPage = () => {
   const router = useRouter();
-  const apiUrl =
-    "https://qar5m2k5ra.execute-api.ap-south-1.amazonaws.com/dev/v2";
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const searchParams = useSearchParams();
   const key = searchParams.get("key");
   const [notFoundFlag, setNotFoundFlag] = useState(false);

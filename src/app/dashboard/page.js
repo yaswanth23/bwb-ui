@@ -1,15 +1,12 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import SignalIcon from "../../../public/assets/svg/signal.svg";
 import NoteIcon from "../../../public/assets/svg/note.svg";
 import CancelIcon from "../../../public/assets/svg/cancel.svg";
 import BidIcon from "../../../public/assets/svg/bid.svg";
 import MoneyIcon from "../../../public/assets/svg/money.svg";
-import { useSelector } from "react-redux";
-import { selectIsUserLoggedIn } from "@/store/user/user.selector";
-import { useRouter, usePathname, redirect } from "next/navigation";
 import styles from "./dashboard.module.css";
 
 const dashboardItems = [
@@ -46,21 +43,6 @@ const dashboardItems = [
 ];
 
 const Dashboard = () => {
-  const isUserLoggedIn = useSelector(selectIsUserLoggedIn);
-  const router = useRouter();
-  const pathname = usePathname();
-
-  useEffect(() => {
-    console.log(isUserLoggedIn);
-    if (!isUserLoggedIn) {
-      router.push("/login");
-    }
-
-    if (isUserLoggedIn && pathname === "/") {
-      redirect("/dashboard");
-    }
-  }, [isUserLoggedIn, router, pathname]);
-
   return (
     <div className={styles.dashboard_container}>
       <div className={styles.dashboard_metrics_section}>
