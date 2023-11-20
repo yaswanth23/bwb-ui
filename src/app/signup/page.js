@@ -36,7 +36,7 @@ const SignUpPage = () => {
     } else {
       setNotFoundFlag(true);
     }
-  }, []);
+  }, [key]);
 
   const [data, updateData] = useReducer(
     (prev, next) => {
