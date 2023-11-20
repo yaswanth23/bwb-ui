@@ -1,5 +1,7 @@
+import Event from "./event";
+
 const EventPage = () => {
-  return <div>EventPage</div>;
+  return <Event />;
 };
 
 export default EventPage;
