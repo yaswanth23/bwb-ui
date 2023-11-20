@@ -9,10 +9,12 @@ import { signIn } from "next-auth/react";
 import { useDispatch } from "react-redux";
 import { storeUserData, changeIsLoggedInUser } from "@/store/user/user.action";
 import { loginUser } from "@/utils/api/auth";
+import Loader from "@/components/loader/loader";
 
 const Login = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
   const [userIdentifier, setUserIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -27,6 +29,7 @@ const Login = () => {
   };
 
   const handleLogin = async () => {
+    setIsLoading(true);
     if (!password) {
       setErrorMessage("Please Enter Password");
     }
@@ -51,6 +54,8 @@ const Login = () => {
         setErrorMessage("Invalid Credentials");
       }
     }
+
+    setIsLoading(false);
   };
 
   return (
@@ -88,9 +93,13 @@ const Login = () => {
                 <span className={styles.error_message}>{errorMessage}</span>
               </div>
               <div className={styles.button_container}>
-                <button className={styles.login_button} onClick={handleLogin}>
-                  Login
-                </button>
+                {isLoading ? (
+                  <Loader />
+                ) : (
+                  <button className={styles.login_button} onClick={handleLogin}>
+                    Login
+                  </button>
+                )}
               </div>
               <div className={styles.contact_us_container}>
                 <p>
