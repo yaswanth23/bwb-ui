@@ -50,6 +50,7 @@ const NewEvent = () => {
               type="text"
               className={styles.event_type_input}
               onChange={(e) => updateData({ eventTitle: e.target.value })}
+              placeholder="Enter Event Title"
             />
             <FaRegCircleCheck
               className={styles.check_icon}
