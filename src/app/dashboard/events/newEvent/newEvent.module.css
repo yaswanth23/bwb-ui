@@ -63,3 +63,45 @@
 .event_type_section .custom-tooltip {
   background: var(--primary-color);
 }
+.award_section {
+  margin-top: 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+}
+.award_main {
+  background: #eeeeee;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+.award_radio_section {
+  display: grid;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #f6f6f6;
+}
+.award_radio_section h2 {
+  font-size: 1.1rem;
+}
+.task_side_img {
+  height: 30%;
+  width: 30%;
+}
+.input_radio {
+  margin: 1.5rem 0;
+}
+.input_radio label {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #e9e9e9;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  border: 2px solid #e9e9e9;
+}
+.input_radio input[type="radio"] {
+  display: none;
+}
+.input_radio input[type="radio"]:checked ~ label {
+  background-color: #e9f0fd;
+  border: 2px solid #4189e0;
+}
