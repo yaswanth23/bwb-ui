@@ -59,6 +59,7 @@
   padding: 1rem;
   border-radius: 0.5rem;
   background-color: #f6f6f6;
+  border: 2px solid #d9d9d9;
 }
 .award_radio_section h2 {
   font-size: 1.1rem;
@@ -84,4 +85,17 @@
 .input_radio input[type="radio"]:checked ~ label {
   background-color: #e9f0fd;
   border: 2px solid #4189e0;
+}
+.delivery_date_section {
+  margin-top: 1rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  background-color: #f6f6f6;
+  border: 2px solid #d9d9d9;
+}
+.delivery_date_section h2 {
+  font-size: 1.1rem;
 }

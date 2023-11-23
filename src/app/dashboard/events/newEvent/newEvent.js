@@ -5,6 +5,8 @@ import styles from "./newEvent.module.css";
 import { Steps } from "antd";
 import Image from "next/image";
 import { Tooltip } from "react-tooltip";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import TaskImage from "../../../../../public/assets/images/tasks.png";
 
 const NewEvent = () => {
@@ -16,7 +18,7 @@ const NewEvent = () => {
       const updateData = { ...prev, ...next };
       return updateData;
     },
-    { eventTitle: "", awardType: 1 }
+    { eventTitle: "", awardType: 1, deliveryDate: null }
   );
 
   return (
@@ -95,6 +97,16 @@ const NewEvent = () => {
                   I may partially award the event to multiple vendors
                 </label>
               </div>
+            </div>
+            <div className={styles.delivery_date_section}>
+              <h2>Delivery Date</h2>
+              <DatePicker
+                showIcon
+                selected={data.deliveryDate}
+                onChange={(date) => updateData({ deliveryDate: date })}
+                minDate={new Date()}
+                placeholderText="Select Delivery Date"
+              />
             </div>
           </div>
           <Image src={TaskImage} alt="task" className={styles.task_side_img} />
