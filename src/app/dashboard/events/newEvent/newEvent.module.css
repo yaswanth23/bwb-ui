@@ -20,30 +20,10 @@
   width: 15rem;
   font-family: "Montserrat", sans-serif;
 }
-.edit_icon {
-  font-size: 1.2rem;
-  color: var(--grey-color);
-  cursor: pointer;
-}
-.event_input_section_one {
+.event_input_section {
   display: flex;
   align-items: flex-end;
   gap: 0.5rem;
-}
-.event_input_section_two {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.check_icon {
-  font-size: 1.2rem;
-  color: var(--primary-color);
-  cursor: pointer;
-}
-.cancel_icon {
-  font-size: 1.2rem;
-  color: var(--red-color);
-  cursor: pointer;
 }
 .mid_container {
   margin-top: 1rem;
