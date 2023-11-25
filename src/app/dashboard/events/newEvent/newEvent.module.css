@@ -99,3 +99,34 @@
 .delivery_date_section h2 {
   font-size: 1.1rem;
 }
+.buttons_container {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.cancel_button {
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #acacac;
+  color: var(--white-color);
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 10rem;
+  cursor: pointer;
+}
+.next_button {
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #08a65c;
+  color: var(--white-color);
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 10rem;
+  cursor: pointer;
+}

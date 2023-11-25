@@ -108,8 +108,27 @@ const NewEvent = () => {
                 placeholderText="Select Delivery Date"
               />
             </div>
+            {stepCount === 0 && (
+              <div className={styles.buttons_container}>
+                <button className={styles.cancel_button}>Cancel</button>
+                <button
+                  className={styles.next_button}
+                  onClick={() => setStepCount(1)}
+                >
+                  Next
+                </button>
+              </div>
+            )}
           </div>
-          <Image src={TaskImage} alt="task" className={styles.task_side_img} />
+          {stepCount === 0 ? (
+            <Image
+              src={TaskImage}
+              alt="task"
+              className={styles.task_side_img}
+            />
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
     </>
