@@ -51,6 +51,7 @@ const NewEvent = () => {
             if (index !== 0) {
               if (item.length === 4) {
                 let obj = {
+                  id: index,
                   product: item[0],
                   productVariant: item[1],
                   quantity: item[2],
