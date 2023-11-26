@@ -130,3 +130,66 @@
   width: 10rem;
   cursor: pointer;
 }
+.product_details_container {
+  margin-top: 1rem;
+  /* background: #eeeeee; */
+  border-radius: 0.5rem;
+}
+.product_details_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.product_details_header h1 {
+  font-size: 1rem;
+  cursor: default;
+}
+.upload_sheet {
+  border-radius: 0.5rem;
+  border: none;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.modal_container {
+  width: 40rem;
+  padding: 1rem;
+}
+.file_uploader {
+  border: 2px dashed var(--primary-color);
+  border-radius: 4px;
+  padding: 5rem 1rem;
+  text-align: center;
+  cursor: pointer;
+}
+.file_uploader p {
+  font-size: 0.9rem;
+  color: var(--primary-color);
+}
+.template_section {
+  margin-top: 1rem;
+}
+.template_section p {
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.download_template_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.download_template_btn a {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  text-decoration: none;
+  background-color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  color: var(--white-color);
+  font-weight: 600;
+  border-radius: 0.3rem;
+}

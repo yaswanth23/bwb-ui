@@ -4,6 +4,9 @@ import React, { useState, useReducer } from "react";
 import styles from "./newEvent.module.css";
 import { Steps } from "antd";
 import Image from "next/image";
+import Modal from "react-modal";
+import { useDropzone } from "react-dropzone";
+import * as XLSX from "xlsx";
 import { Tooltip } from "react-tooltip";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,6 +14,7 @@ import TaskImage from "../../../../../public/assets/images/tasks.png";
 
 const NewEvent = () => {
   const [stepCount, setStepCount] = useState(0);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const EVENT_TYPE_DESCRIPTION = "Request for Quotation";
 
   const [data, updateData] = useReducer(
@@ -18,8 +22,51 @@ const NewEvent = () => {
       const updateData = { ...prev, ...next };
       return updateData;
     },
-    { eventTitle: "", awardType: 1, deliveryDate: null }
+    { eventTitle: "", awardType: 1, deliveryDate: null, productDetails: [] }
   );
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: ".xlsx, .csv",
+    onDrop: (acceptedFiles) => {
+      const file = acceptedFiles[0];
+      const reader = new FileReader();
+      reader.onload = (evt) => {
+        const bstr = evt.target.result;
+        const wb = XLSX.read(bstr, { type: "binary" });
+        const wsname = wb.SheetNames[0];
+        const ws = wb.Sheets[wsname];
+        const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
+
+        let productDetails = [];
+        if (data.length > 1) {
+          data.map((item, index) => {
+            if (index !== 0) {
+              if (item.length === 4) {
+                let obj = {
+                  product: item[0],
+                  productVariant: item[1],
+                  quantity: item[2],
+                  deliveryLocation: item[3],
+                };
+                productDetails.push(obj);
+              }
+            }
+          });
+        }
+        updateData({ productDetails: productDetails });
+        setModalIsOpen(false);
+      };
+      reader.readAsBinaryString(file);
+    },
+  });
 
   return (
     <>
@@ -120,17 +167,71 @@ const NewEvent = () => {
               </div>
             )}
           </div>
-          {stepCount === 0 ? (
+          {stepCount === 0 && (
             <Image
               src={TaskImage}
               alt="task"
               className={styles.task_side_img}
             />
-          ) : (
-            <div></div>
           )}
         </div>
+        {stepCount > 0 && (
+          <div className={styles.product_details_container}>
+            <div className={styles.product_details_header}>
+              <h1>Product Details:</h1>
+              <button
+                className={styles.upload_sheet}
+                onClick={() => {
+                  openModal();
+                }}
+              >
+                Upload Sheet
+              </button>
+            </div>
+            <div className={styles.table_container}></div>
+          </div>
+        )}
       </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        preventScroll={true}
+        style={{
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
+          },
+          content: {
+            padding: 0,
+            border: "none",
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+          },
+        }}
+        ariaHideApp={false}
+      >
+        <div className={styles.modal_container}>
+          <div {...getRootProps()} className={styles.file_uploader}>
+            <input {...getInputProps()} />
+            <p>Add or Drop your sheet here</p>
+          </div>
+          <div className={styles.template_section}>
+            <p>OR</p>
+            <p>You can download sample excel template here</p>
+            <div className={styles.download_template_btn}>
+              <a
+                href="https://bwb-assets.s3.ap-south-1.amazonaws.com/Sample+Product+Details+Template.xlsx"
+                download
+              >
+                Download Template
+              </a>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 };
