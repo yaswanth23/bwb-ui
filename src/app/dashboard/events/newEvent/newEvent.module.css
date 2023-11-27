@@ -234,3 +234,66 @@
   align-items: center;
   margin-top: 1rem;
 }
+.add_new_btn {
+  border-radius: 0.5rem;
+  border: 2px solid var(--primary-color);
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: var(--primary-color);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.modal_two_container {
+  width: 30rem;
+  padding: 1rem;
+}
+.modal_two_container h1 {
+  font-size: 1rem;
+  text-align: center;
+}
+.product_form_section {
+  margin: 1rem 0;
+  display: grid;
+}
+.product_form_section label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+.product_type_input {
+  font-size: 0.9rem;
+  border: 1px solid var(--black-color);
+  background: transparent;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+}
+.prd_cancel_button {
+  border-radius: 0.3rem;
+  border: none;
+  background-color: #acacac;
+  color: var(--white-color);
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.prd_add_button {
+  border-radius: 0.3rem;
+  border: none;
+  background-color: #08a65c;
+  color: var(--white-color);
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.prd_btn_section {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}

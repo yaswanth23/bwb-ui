@@ -14,7 +14,9 @@ import TaskImage from "../../../../../public/assets/images/tasks.png";
 
 const NewEvent = () => {
   const [stepCount, setStepCount] = useState(0);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalOneIsOpen, setModalOneIsOpen] = useState(false);
+  const [modalTwoIsOpen, setModalTwoIsOpen] = useState(false);
+  const [productErrorMessage, setProductErrorMessage] = useState("");
   const EVENT_TYPE_DESCRIPTION = "Request for Quotation";
 
   const [data, updateData] = useReducer(
@@ -25,14 +27,70 @@ const NewEvent = () => {
     { eventTitle: "", awardType: 1, deliveryDate: null, productDetails: [] }
   );
 
-  console.log(data);
+  const [productData, updateProductData] = useReducer(
+    (prev, next) => {
+      const updateProductData = { ...prev, ...next };
+      return updateProductData;
+    },
+    { product: "", productVariant: "", quantity: null, deliveryLocation: "" }
+  );
 
-  const openModal = () => {
-    setModalIsOpen(true);
+  const openModalOne = () => {
+    setModalOneIsOpen(true);
   };
 
-  const closeModal = () => {
-    setModalIsOpen(false);
+  const closeModalOne = () => {
+    setModalOneIsOpen(false);
+  };
+
+  const openModalTwo = () => {
+    setModalTwoIsOpen(true);
+  };
+
+  const closeModalTwo = () => {
+    setModalTwoIsOpen(false);
+  };
+
+  const handleAddProduct = () => {
+    if (!productData.deliveryLocation) {
+      setProductErrorMessage("Please Enter Delivery Location");
+    }
+    if (!productData.quantity) {
+      setProductErrorMessage("Please Enter Quantity");
+    }
+    if (!productData.productVariant) {
+      setProductErrorMessage("Please Enter Product Variant");
+    }
+    if (!productData.product) {
+      setProductErrorMessage("Please Enter Product Name");
+    }
+
+    if (
+      productData.product &&
+      productData.productVariant &&
+      productData.quantity &&
+      productData.deliveryLocation
+    ) {
+      updateData({
+        productDetails: [
+          ...data.productDetails,
+          {
+            product: productData.product,
+            productVariant: productData.productVariant,
+            quantity: productData.quantity,
+            deliveryLocation: productData.deliveryLocation,
+          },
+        ],
+      });
+      updateProductData({
+        product: "",
+        productVariant: "",
+        quantity: null,
+        deliveryLocation: "",
+      });
+      setProductErrorMessage("");
+      closeModalTwo();
+    }
   };
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -66,7 +124,7 @@ const NewEvent = () => {
         updateData({
           productDetails: [...data.productDetails, ...productDetails],
         });
-        setModalIsOpen(false);
+        setModalOneIsOpen(false);
       };
       reader.readAsBinaryString(file);
     },
@@ -186,7 +244,7 @@ const NewEvent = () => {
               <button
                 className={styles.upload_sheet}
                 onClick={() => {
-                  openModal();
+                  openModalOne();
                 }}
               >
                 Upload Sheet
@@ -220,15 +278,22 @@ const NewEvent = () => {
                 </tbody>
               </table>
               <div className={styles.add_new_btn_container}>
-                <button>Add New</button>
+                <button
+                  className={styles.add_new_btn}
+                  onClick={() => {
+                    openModalTwo();
+                  }}
+                >
+                  Add New
+                </button>
               </div>
             </div>
           </div>
         )}
       </div>
       <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
+        isOpen={modalOneIsOpen}
+        onRequestClose={closeModalOne}
         preventScroll={true}
         style={{
           overlay: {
@@ -263,6 +328,92 @@ const NewEvent = () => {
                 Download Template
               </a>
             </div>
+          </div>
+        </div>
+      </Modal>
+      <Modal
+        isOpen={modalTwoIsOpen}
+        onRequestClose={closeModalTwo}
+        preventScroll={true}
+        style={{
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
+          },
+          content: {
+            padding: 0,
+            border: "none",
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+          },
+        }}
+        ariaHideApp={false}
+      >
+        <div className={styles.modal_two_container}>
+          <h1>Add Product Details</h1>
+          <div className={styles.product_form_section}>
+            <label htmlFor="product">Product:</label>
+            <input
+              type="text"
+              className={styles.product_type_input}
+              onChange={(e) => updateProductData({ product: e.target.value })}
+              placeholder="Enter Product Name"
+              id="product"
+            />
+            <label htmlFor="productVariant">Product Variant:</label>
+            <input
+              type="text"
+              className={styles.product_type_input}
+              onChange={(e) =>
+                updateProductData({ productVariant: e.target.value })
+              }
+              placeholder="Enter Product Variant"
+              id="productVariant"
+            />
+            <label htmlFor="quantity">Quantity:</label>
+            <input
+              type="text"
+              className={styles.product_type_input}
+              onChange={(e) => updateProductData({ quantity: e.target.value })}
+              placeholder="Enter Quantity"
+              id="quantity"
+            />
+            <label htmlFor="deliveryLocation">Delivery Location:</label>
+            <input
+              type="text"
+              className={styles.product_type_input}
+              onChange={(e) =>
+                updateProductData({ deliveryLocation: e.target.value })
+              }
+              placeholder="Enter Delivery Location"
+              id="deliveryLocation"
+            />
+          </div>
+          {productErrorMessage && <span>{productErrorMessage}</span>}
+          <div className={styles.prd_btn_section}>
+            <button
+              className={styles.prd_cancel_button}
+              onClick={() => {
+                closeModalTwo();
+                updateProductData({
+                  product: "",
+                  productVariant: "",
+                  quantity: null,
+                  deliveryLocation: "",
+                });
+              }}
+            >
+              Cancel
+            </button>
+            <button
+              className={styles.prd_add_button}
+              onClick={handleAddProduct}
+            >
+              Add
+            </button>
           </div>
         </div>
       </Modal>
