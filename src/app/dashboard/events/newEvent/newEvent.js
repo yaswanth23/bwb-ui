@@ -13,8 +13,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import TaskImage from "../../../../../public/assets/images/tasks.png";
 import { BiEditAlt } from "react-icons/bi";
 import { MdOutlineDelete } from "react-icons/md";
+import { useSelector } from "react-redux";
+import { getTermsAndConditions } from "@/utils/api/event";
+import { selectUserData } from "@/store/user/user.selector";
 
 const NewEvent = () => {
+  const userData = useSelector(selectUserData);
   const [stepCount, setStepCount] = useState(0);
   const [modalOneIsOpen, setModalOneIsOpen] = useState(false);
   const [modalTwoIsOpen, setModalTwoIsOpen] = useState(false);
@@ -22,7 +26,8 @@ const NewEvent = () => {
   const [productErrorMessage, setProductErrorMessage] = useState("");
   const [itemIdx, setItemIdx] = useState(null);
   const EVENT_TYPE_DESCRIPTION = "Request for Quotation";
-
+  const [termsAndConditions, setTermsAndConditions] = useState("");
+  console.log("----> tc", termsAndConditions);
   const [data, updateData] = useReducer(
     (prev, next) => {
       const updateData = { ...prev, ...next };
@@ -149,6 +154,14 @@ const NewEvent = () => {
       });
       setProductErrorMessage("");
       closeModalThree();
+    }
+  };
+
+  const handleTermsStep = async () => {
+    setStepCount(2);
+    const data = await getTermsAndConditions(userData.userId);
+    if (data?.data.statusCode === 200) {
+      setTermsAndConditions(data.data.termsAndConditions);
     }
   };
 
@@ -374,7 +387,7 @@ const NewEvent = () => {
                 <div className={styles.second_next_btn_section}>
                   <button
                     className={styles.next_button}
-                    onClick={() => setStepCount(2)}
+                    onClick={handleTermsStep}
                   >
                     Next
                   </button>
