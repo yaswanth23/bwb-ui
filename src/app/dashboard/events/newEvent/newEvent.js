@@ -370,6 +370,24 @@ const NewEvent = () => {
                   Add New
                 </button>
               </div>
+              {data.productDetails.length > 0 && stepCount === 1 && (
+                <div className={styles.second_next_btn_section}>
+                  <button
+                    className={styles.next_button}
+                    onClick={() => setStepCount(2)}
+                  >
+                    Next
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+        {stepCount > 1 && (
+          <div className={styles.third_container}>
+            <div className={styles.tc_container}>
+              <h1>Terms & Conditions:</h1>
+              <div></div>
             </div>
           </div>
         )}

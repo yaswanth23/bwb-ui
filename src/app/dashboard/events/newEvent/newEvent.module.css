@@ -316,3 +316,14 @@
   font-weight: 500;
   color: var(--red-color);
 }
+.second_next_btn_section {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+.third_container {
+  margin-top: 1rem;
+}
+.tc_container h1 {
+  font-size: 1rem;
+}
