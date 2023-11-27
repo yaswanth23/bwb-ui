@@ -228,6 +228,10 @@
 .table_main td:nth-child(4) {
   text-align: center;
 }
+.table_main td:nth-child(5) {
+  display: flex;
+  gap: 1rem;
+}
 .add_new_btn_container {
   display: flex;
   justify-content: center;
@@ -296,4 +300,19 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
+}
+.edit_icon {
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+}
+.delete_icon {
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: var(--red-color);
+}
+.error_message_txt {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--red-color);
 }

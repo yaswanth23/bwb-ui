@@ -11,12 +11,16 @@ import { Tooltip } from "react-tooltip";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import TaskImage from "../../../../../public/assets/images/tasks.png";
+import { BiEditAlt } from "react-icons/bi";
+import { MdOutlineDelete } from "react-icons/md";
 
 const NewEvent = () => {
   const [stepCount, setStepCount] = useState(0);
   const [modalOneIsOpen, setModalOneIsOpen] = useState(false);
   const [modalTwoIsOpen, setModalTwoIsOpen] = useState(false);
+  const [modalThreeIsOpen, setModalThreeIsOpen] = useState(false);
   const [productErrorMessage, setProductErrorMessage] = useState("");
+  const [itemIdx, setItemIdx] = useState(null);
   const EVENT_TYPE_DESCRIPTION = "Request for Quotation";
 
   const [data, updateData] = useReducer(
@@ -48,7 +52,18 @@ const NewEvent = () => {
   };
 
   const closeModalTwo = () => {
+    setProductErrorMessage("");
     setModalTwoIsOpen(false);
+  };
+
+  const openModalThree = (itemId) => {
+    setItemIdx(itemId);
+    setModalThreeIsOpen(true);
+  };
+
+  const closeModalThree = () => {
+    setItemIdx(null);
+    setModalThreeIsOpen(false);
   };
 
   const handleAddProduct = () => {
@@ -90,6 +105,50 @@ const NewEvent = () => {
       });
       setProductErrorMessage("");
       closeModalTwo();
+    }
+  };
+
+  const handleEditProduct = () => {
+    if (!productData.deliveryLocation) {
+      setProductErrorMessage("Please Enter Delivery Location");
+    }
+    if (!productData.quantity) {
+      setProductErrorMessage("Please Enter Quantity");
+    }
+    if (!productData.productVariant) {
+      setProductErrorMessage("Please Enter Product Variant");
+    }
+    if (!productData.product) {
+      setProductErrorMessage("Please Enter Product Name");
+    }
+
+    if (
+      productData.product &&
+      productData.productVariant &&
+      productData.quantity &&
+      productData.deliveryLocation
+    ) {
+      const newProductDetails = data.productDetails.map((item, index) => {
+        if (index === itemIdx) {
+          return {
+            product: productData.product,
+            productVariant: productData.productVariant,
+            quantity: productData.quantity,
+            deliveryLocation: productData.deliveryLocation,
+          };
+        } else {
+          return item;
+        }
+      });
+      updateData({ productDetails: newProductDetails });
+      updateProductData({
+        product: "",
+        productVariant: "",
+        quantity: null,
+        deliveryLocation: "",
+      });
+      setProductErrorMessage("");
+      closeModalThree();
     }
   };
 
@@ -273,6 +332,30 @@ const NewEvent = () => {
                       <td>{item.productVariant}</td>
                       <td>{item.quantity}</td>
                       <td>{item.deliveryLocation}</td>
+                      <td>
+                        <BiEditAlt
+                          className={styles.edit_icon}
+                          onClick={() => {
+                            openModalThree(index);
+                            updateProductData({
+                              product: item.product,
+                              productVariant: item.productVariant,
+                              quantity: item.quantity,
+                              deliveryLocation: item.deliveryLocation,
+                            });
+                          }}
+                        />
+                        <MdOutlineDelete
+                          className={styles.delete_icon}
+                          onClick={() => {
+                            const newProductDetails =
+                              data.productDetails.filter(
+                                (item, i) => i !== index
+                              );
+                            updateData({ productDetails: newProductDetails });
+                          }}
+                        />
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -392,7 +475,11 @@ const NewEvent = () => {
               id="deliveryLocation"
             />
           </div>
-          {productErrorMessage && <span>{productErrorMessage}</span>}
+          {productErrorMessage && (
+            <span className={styles.error_message_txt}>
+              {productErrorMessage}
+            </span>
+          )}
           <div className={styles.prd_btn_section}>
             <button
               className={styles.prd_cancel_button}
@@ -413,6 +500,100 @@ const NewEvent = () => {
               onClick={handleAddProduct}
             >
               Add
+            </button>
+          </div>
+        </div>
+      </Modal>
+      <Modal
+        isOpen={modalThreeIsOpen}
+        onRequestClose={closeModalThree}
+        preventScroll={true}
+        style={{
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
+          },
+          content: {
+            padding: 0,
+            border: "none",
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+          },
+        }}
+        ariaHideApp={false}
+      >
+        <div className={styles.modal_two_container}>
+          <h1>Edit Product Details</h1>
+          <div className={styles.product_form_section}>
+            <label htmlFor="product">Product:</label>
+            <input
+              type="text"
+              className={styles.product_type_input}
+              defaultValue={productData.product}
+              onChange={(e) => updateProductData({ product: e.target.value })}
+              placeholder="Enter Product Name"
+              id="product"
+            />
+            <label htmlFor="productVariant">Product Variant:</label>
+            <input
+              type="text"
+              className={styles.product_type_input}
+              defaultValue={productData.productVariant}
+              onChange={(e) =>
+                updateProductData({ productVariant: e.target.value })
+              }
+              placeholder="Enter Product Variant"
+              id="productVariant"
+            />
+            <label htmlFor="quantity">Quantity:</label>
+            <input
+              type="text"
+              className={styles.product_type_input}
+              defaultValue={productData.quantity}
+              onChange={(e) => updateProductData({ quantity: e.target.value })}
+              placeholder="Enter Quantity"
+              id="quantity"
+            />
+            <label htmlFor="deliveryLocation">Delivery Location:</label>
+            <input
+              type="text"
+              className={styles.product_type_input}
+              defaultValue={productData.deliveryLocation}
+              onChange={(e) =>
+                updateProductData({ deliveryLocation: e.target.value })
+              }
+              placeholder="Enter Delivery Location"
+              id="deliveryLocation"
+            />
+          </div>
+          {productErrorMessage && (
+            <span className={styles.error_message_txt}>
+              {productErrorMessage}
+            </span>
+          )}
+          <div className={styles.prd_btn_section}>
+            <button
+              className={styles.prd_cancel_button}
+              onClick={() => {
+                closeModalThree();
+                updateProductData({
+                  product: "",
+                  productVariant: "",
+                  quantity: null,
+                  deliveryLocation: "",
+                });
+              }}
+            >
+              Cancel
+            </button>
+            <button
+              className={styles.prd_add_button}
+              onClick={handleEditProduct}
+            >
+              Save
             </button>
           </div>
         </div>
