@@ -400,7 +400,9 @@ const NewEvent = () => {
           <div className={styles.third_container}>
             <div className={styles.tc_container}>
               <h1>Terms & Conditions:</h1>
-              <div></div>
+              <div className={styles.tc_section}>
+                <div className={styles.tc_add_data_section}></div>
+              </div>
             </div>
           </div>
         )}
