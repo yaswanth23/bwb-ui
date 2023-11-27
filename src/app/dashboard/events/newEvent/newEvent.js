@@ -25,6 +25,8 @@ const NewEvent = () => {
     { eventTitle: "", awardType: 1, deliveryDate: null, productDetails: [] }
   );
 
+  console.log(data);
+
   const openModal = () => {
     setModalIsOpen(true);
   };
@@ -43,15 +45,14 @@ const NewEvent = () => {
         const wb = XLSX.read(bstr, { type: "binary" });
         const wsname = wb.SheetNames[0];
         const ws = wb.Sheets[wsname];
-        const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
+        const finalData = XLSX.utils.sheet_to_json(ws, { header: 1 });
 
         let productDetails = [];
-        if (data.length > 1) {
-          data.map((item, index) => {
+        if (finalData.length > 1) {
+          finalData.map((item, index) => {
             if (index !== 0) {
               if (item.length === 4) {
                 let obj = {
-                  id: index,
                   product: item[0],
                   productVariant: item[1],
                   quantity: item[2],
@@ -62,7 +63,9 @@ const NewEvent = () => {
             }
           });
         }
-        updateData({ productDetails: productDetails });
+        updateData({
+          productDetails: [...data.productDetails, ...productDetails],
+        });
         setModalIsOpen(false);
       };
       reader.readAsBinaryString(file);
@@ -189,7 +192,37 @@ const NewEvent = () => {
                 Upload Sheet
               </button>
             </div>
-            <div className={styles.table_container}></div>
+            <div className={styles.table_container}>
+              <table className={styles.table_main}>
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Product Variant</th>
+                    <th>Quantity</th>
+                    <th>Delivery Location</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.productDetails.map((item, index) => (
+                    <tr
+                      key={index}
+                      className={
+                        index % 2 === 0 ? styles.even_row : styles.odd_row
+                      }
+                    >
+                      <td>{item.product}</td>
+                      <td>{item.productVariant}</td>
+                      <td>{item.quantity}</td>
+                      <td>{item.deliveryLocation}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <div className={styles.add_new_btn_container}>
+                <button>Add New</button>
+              </div>
+            </div>
           </div>
         )}
       </div>
