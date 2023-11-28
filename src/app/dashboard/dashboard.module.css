@@ -1,4 +1,4 @@
-.container {
+/* .container {
   display: flex;
 }
 .menu {
@@ -9,6 +9,25 @@
 }
 .content {
   flex: 5;
+  padding: 1rem;
+  background-color: var(--light-white-color);
+} */
+.container {
+  display: flex;
+}
+.menu {
+  position: fixed;
+  width: 20%; /* adjust as needed */
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--primary-color);
+  padding: 1rem;
+}
+.content {
+  margin-left: 20%; /* should match the width of .menu */
+  width: 80%; /* adjust as needed */
+  height: 100vh;
+  overflow-y: auto;
   padding: 1rem;
   background-color: var(--light-white-color);
 }
