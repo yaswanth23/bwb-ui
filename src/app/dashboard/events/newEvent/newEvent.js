@@ -262,7 +262,7 @@ const NewEvent = () => {
                   id="1"
                 />
                 <label htmlFor="1">
-                  Ill award the entire lot to single vendor
+                  I&apos;ll award the entire lot to single vendor
                 </label>
               </div>
               <div className={styles.input_radio}>
