@@ -262,7 +262,7 @@ const NewEvent = () => {
                   id="1"
                 />
                 <label htmlFor="1">
-                  I'll award the entire lot to single vendor
+                  Ill award the entire lot to single vendor
                 </label>
               </div>
               <div className={styles.input_radio}>
@@ -401,7 +401,9 @@ const NewEvent = () => {
             <div className={styles.tc_container}>
               <h1>Terms & Conditions:</h1>
               <div className={styles.tc_section}>
-                <div className={styles.tc_add_data_section}></div>
+                <div className={styles.tc_add_data_section}>
+
+                </div>
               </div>
             </div>
           </div>
