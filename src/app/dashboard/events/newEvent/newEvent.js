@@ -13,8 +13,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import TaskImage from "../../../../../public/assets/images/tasks.png";
 import { BiEditAlt } from "react-icons/bi";
 import { MdOutlineDelete } from "react-icons/md";
+import { IoMdAdd } from "react-icons/io";
 import { useSelector } from "react-redux";
-import { getTermsAndConditions } from "@/utils/api/event";
+import {
+  getTermsAndConditions,
+  addTermsAndConditions,
+} from "@/utils/api/event";
 import { selectUserData } from "@/store/user/user.selector";
 
 const NewEvent = () => {
@@ -27,7 +31,9 @@ const NewEvent = () => {
   const [itemIdx, setItemIdx] = useState(null);
   const EVENT_TYPE_DESCRIPTION = "Request for Quotation";
   const [termsAndConditions, setTermsAndConditions] = useState("");
-  console.log("----> tc", termsAndConditions);
+  const [termsAndConditionText, setTermsAndConditionText] = useState("");
+  const [checkedItems, setCheckedItems] = useState({});
+  
   const [data, updateData] = useReducer(
     (prev, next) => {
       const updateData = { ...prev, ...next };
@@ -69,6 +75,30 @@ const NewEvent = () => {
   const closeModalThree = () => {
     setItemIdx(null);
     setModalThreeIsOpen(false);
+  };
+
+  const handleCheckChange = (event) => {
+    setCheckedItems({
+      ...checkedItems,
+      [event.target.name]: event.target.checked,
+    });
+  };
+
+  const handleTermsAndConditionTextChange = (event) => {
+    setTermsAndConditionText(event.target.value);
+  };
+
+  const handleAddTermsAndConditions = async () => {
+    if (termsAndConditionText) {
+      const data = await addTermsAndConditions(
+        userData.userId,
+        termsAndConditionText
+      );
+      if (data?.data.statusCode === 200) {
+        setTermsAndConditions(data.data.termsAndConditions);
+        setTermsAndConditionText("");
+      }
+    }
   };
 
   const handleAddProduct = () => {
@@ -402,7 +432,43 @@ const NewEvent = () => {
               <h1>Terms & Conditions:</h1>
               <div className={styles.tc_section}>
                 <div className={styles.tc_add_data_section}>
-
+                  <h1>Please Select the Terms & Conditions You Agree With</h1>
+                  {termsAndConditions &&
+                    termsAndConditions.map((item) => (
+                      <div
+                        key={item.termsconditionsid}
+                        className={styles.tc_data_list_section}
+                      >
+                        <input
+                          type="checkbox"
+                          id={item.termsconditionsid}
+                          name={item.termsconditionsid}
+                          checked={
+                            checkedItems[item.termsconditionsid] || false
+                          }
+                          onChange={handleCheckChange}
+                        />
+                        <label htmlFor={item.termsconditionsid}>
+                          {item.termsandconditionstext}
+                        </label>
+                      </div>
+                    ))}
+                  <div className={styles.add_tc_section}>
+                    <input
+                      type="text"
+                      placeholder="Add your own terms & conditions"
+                      name="termsAndConditionText"
+                      onChange={handleTermsAndConditionTextChange}
+                      className={styles.tc_input}
+                      value={termsAndConditionText}
+                    />
+                    <button
+                      className={styles.plus_button}
+                      onClick={handleAddTermsAndConditions}
+                    >
+                      <IoMdAdd className={styles.plus_icon} />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
