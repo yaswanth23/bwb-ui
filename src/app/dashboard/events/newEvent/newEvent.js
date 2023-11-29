@@ -35,6 +35,8 @@ const NewEvent = () => {
   const [checkedItems, setCheckedItems] = useState({});
   const [eventStartTime, setEventStartTime] = useState(new Date());
   const [startTimeOption, setStartTimeOption] = useState("now");
+  const [eventDuration, setEventDuration] = useState("30 mins");
+  const [durationOption, setDurationOption] = useState("30 mins");
 
   const [data, updateData] = useReducer(
     (prev, next) => {
@@ -108,6 +110,17 @@ const NewEvent = () => {
     if (e.target.value === "now") {
       setEventStartTime(new Date());
     }
+  };
+
+  const handleDurationOptionChange = (e) => {
+    setDurationOption(e.target.value);
+    if (e.target.value !== "custom") {
+      setEventDuration(e.target.value);
+    }
+  };
+
+  const handleDurationChange = (e) => {
+    setEventDuration(e.target.value);
   };
 
   const handleAddProduct = () => {
@@ -523,6 +536,56 @@ const NewEvent = () => {
             </div>
             <div className={styles.event_duration_container}>
               <h1>Event Duration:</h1>
+              <div className={styles.event_duration_options_section}>
+                <label>
+                  <input
+                    type="radio"
+                    value="30 mins"
+                    checked={durationOption === "30 mins"}
+                    onChange={handleDurationOptionChange}
+                  />
+                  30 mins
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    value="1hr"
+                    checked={durationOption === "1hr"}
+                    onChange={handleDurationOptionChange}
+                  />
+                  1hr
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    value="4hr"
+                    checked={durationOption === "4hr"}
+                    onChange={handleDurationOptionChange}
+                  />
+                  4hr
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    value="custom"
+                    checked={durationOption === "custom"}
+                    onChange={handleDurationOptionChange}
+                  />
+                  Custom
+                </label>
+                {durationOption === "custom" && (
+                  <select value={eventDuration} onChange={handleDurationChange} className={styles.custom_duration_select}>
+                    {Array.from({ length: 24 }, (_, i) => i + 1).map((hour) => (
+                      <option key={hour} value={`${hour} hr`}>
+                        {hour} hr
+                      </option>
+                    ))}
+                  </select>
+                )}
+              </div>
+            </div>
+            <div className={styles.publish_button_section}>
+              <button>Publish</button>
             </div>
           </div>
         )}
