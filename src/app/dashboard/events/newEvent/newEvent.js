@@ -18,6 +18,7 @@ import { useSelector } from "react-redux";
 import {
   getTermsAndConditions,
   addTermsAndConditions,
+  scheduleEvent,
 } from "@/utils/api/event";
 import { selectUserData } from "@/store/user/user.selector";
 
@@ -38,6 +39,20 @@ const NewEvent = () => {
   const [eventDuration, setEventDuration] = useState("30 mins");
   const [durationOption, setDurationOption] = useState("30 mins");
   const [finalErrorMessage, setFinalErrorMessage] = useState("");
+
+  const isToday = (date) => {
+    const today = new Date();
+    return (
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear()
+    );
+  };
+
+  const minTime = isToday(eventStartTime)
+    ? new Date()
+    : new Date().setHours(0, 0, 0, 0);
+  const maxTime = new Date().setHours(23, 59, 59, 999);
 
   const [data, updateData] = useReducer(
     (prev, next) => {
@@ -255,7 +270,7 @@ const NewEvent = () => {
     },
   });
 
-  const handleFinalEventSubmit = () => {
+  const handleFinalEventSubmit = async () => {
     let termsAndConditionsIds = [];
     let errorFlag = false;
 
@@ -303,7 +318,7 @@ const NewEvent = () => {
         eventDuration: eventDuration,
       };
 
-      console.log("1---", finalObject);
+      const result = await scheduleEvent(finalObject);
     }
   };
 
@@ -577,9 +592,11 @@ const NewEvent = () => {
                       selected={eventStartTime}
                       onChange={(date) => setEventStartTime(date)}
                       showTimeSelect
-                      timeIntervals={1}
+                      timeIntervals={10}
                       minDate={new Date()}
                       maxDate={new Date().setDate(new Date().getDate() + 30)}
+                      minTime={minTime}
+                      maxTime={maxTime}
                       dateFormat="MMMM d, yyyy h:mm aa"
                       placeholderText="Select Date & Time"
                     />
