@@ -99,6 +99,13 @@
 .delivery_date_section h2 {
   font-size: 1.1rem;
 }
+.delivery_date_section :global(.react-datepicker__input-container input) {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
 .buttons_container {
   margin-top: 1rem;
   padding-top: 1rem;

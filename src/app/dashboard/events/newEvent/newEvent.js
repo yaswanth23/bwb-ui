@@ -334,7 +334,6 @@ const NewEvent = () => {
             <div className={styles.delivery_date_section}>
               <h2>Delivery Date</h2>
               <DatePicker
-                showIcon
                 selected={data.deliveryDate}
                 onChange={(date) => updateData({ deliveryDate: date })}
                 minDate={new Date()}
