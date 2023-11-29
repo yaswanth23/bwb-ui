@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "dotenv -e .env.development next dev",
+    "prod": "dotenv -e .env.production next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
