@@ -33,7 +33,9 @@ const NewEvent = () => {
   const [termsAndConditions, setTermsAndConditions] = useState("");
   const [termsAndConditionText, setTermsAndConditionText] = useState("");
   const [checkedItems, setCheckedItems] = useState({});
-  
+  const [eventStartTime, setEventStartTime] = useState(new Date());
+  const [startTimeOption, setStartTimeOption] = useState("now");
+
   const [data, updateData] = useReducer(
     (prev, next) => {
       const updateData = { ...prev, ...next };
@@ -98,6 +100,13 @@ const NewEvent = () => {
         setTermsAndConditions(data.data.termsAndConditions);
         setTermsAndConditionText("");
       }
+    }
+  };
+
+  const handleOptionChange = (e) => {
+    setStartTimeOption(e.target.value);
+    if (e.target.value === "now") {
+      setEventStartTime(new Date());
     }
   };
 
@@ -471,6 +480,49 @@ const NewEvent = () => {
                   </div>
                 </div>
               </div>
+            </div>
+            <div className={styles.event_schedule_container}>
+              <h1>Event Schedule Date/Time:</h1>
+              <div className={styles.event_schedule_options_section}>
+                <label>
+                  <input
+                    type="radio"
+                    value="now"
+                    checked={startTimeOption === "now"}
+                    onChange={handleOptionChange}
+                    className={styles.radio_input}
+                  />
+                  Now
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    value="custom"
+                    checked={startTimeOption === "custom"}
+                    onChange={handleOptionChange}
+                    className={styles.radio_input}
+                  />
+                  Custom
+                </label>
+                {startTimeOption === "custom" && (
+                  <div className={styles.custom_selection}>
+                    <h1>Select custom Date and Time:</h1>
+                    <DatePicker
+                      selected={eventStartTime}
+                      onChange={(date) => setEventStartTime(date)}
+                      showTimeSelect
+                      timeIntervals={1}
+                      minDate={new Date()}
+                      maxDate={new Date().setDate(new Date().getDate() + 30)}
+                      dateFormat="MMMM d, yyyy h:mm aa"
+                      placeholderText="Select Date & Time"
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className={styles.event_duration_container}>
+              <h1>Event Duration:</h1>
             </div>
           </div>
         )}
