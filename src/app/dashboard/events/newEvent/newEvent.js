@@ -574,7 +574,11 @@ const NewEvent = () => {
                   Custom
                 </label>
                 {durationOption === "custom" && (
-                  <select value={eventDuration} onChange={handleDurationChange} className={styles.custom_duration_select}>
+                  <select
+                    value={eventDuration}
+                    onChange={handleDurationChange}
+                    className={styles.custom_duration_select}
+                  >
                     {Array.from({ length: 24 }, (_, i) => i + 1).map((hour) => (
                       <option key={hour} value={`${hour} hr`}>
                         {hour} hr
@@ -585,7 +589,7 @@ const NewEvent = () => {
               </div>
             </div>
             <div className={styles.publish_button_section}>
-              <button>Publish</button>
+              <button className={styles.publish_btn}>Publish</button>
             </div>
           </div>
         )}

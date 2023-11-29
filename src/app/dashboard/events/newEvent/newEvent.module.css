@@ -447,3 +447,14 @@
   align-items: center;
   justify-content: flex-end;
 }
+.publish_btn {
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #08a65c;
+  color: var(--white-color);
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 10rem;
+  cursor: pointer;
+}
