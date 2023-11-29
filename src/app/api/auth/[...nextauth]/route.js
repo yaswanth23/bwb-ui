@@ -20,6 +20,7 @@ const authOptions = {
           credentials.userIdentifier,
           credentials.password
         );
+        console.log("---> dd", user);
         if (user?.data?.statusCode === 200) {
           return user;
         }
