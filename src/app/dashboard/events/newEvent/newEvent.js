@@ -319,6 +319,8 @@ const NewEvent = () => {
       };
 
       const result = await scheduleEvent(finalObject);
+      setStepCount(3);
+      window.location.reload();
     }
   };
 
