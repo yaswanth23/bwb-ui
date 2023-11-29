@@ -37,6 +37,7 @@ const NewEvent = () => {
   const [startTimeOption, setStartTimeOption] = useState("now");
   const [eventDuration, setEventDuration] = useState("30 mins");
   const [durationOption, setDurationOption] = useState("30 mins");
+  const [finalErrorMessage, setFinalErrorMessage] = useState("");
 
   const [data, updateData] = useReducer(
     (prev, next) => {
@@ -254,6 +255,58 @@ const NewEvent = () => {
     },
   });
 
+  const handleFinalEventSubmit = () => {
+    let termsAndConditionsIds = [];
+    let errorFlag = false;
+
+    if (checkedItems) {
+      for (let [key, value] of Object.entries(checkedItems)) {
+        if (value) {
+          termsAndConditionsIds.push(Number(key));
+        }
+      }
+      if (termsAndConditionsIds.length < 1) {
+        setFinalErrorMessage("Please Select Terms & Conditions");
+        errorFlag = true;
+      }
+    }
+    if (termsAndConditions.length < 1) {
+      setFinalErrorMessage("Please Add Terms & Conditions");
+      errorFlag = true;
+    }
+    if (data.productDetails.length < 1) {
+      setFinalErrorMessage("Please Add Product Details");
+      errorFlag = true;
+    }
+    if (!data.deliveryDate) {
+      setFinalErrorMessage("Please select Delivery Date");
+      errorFlag = true;
+    }
+    if (!data.eventTitle) {
+      setFinalErrorMessage("Please Enter Event Title");
+      errorFlag = true;
+    }
+
+    if (!errorFlag) {
+      setFinalErrorMessage("");
+
+      let finalObject = {
+        userId: userData.userId,
+        eventTitle: data.eventTitle,
+        awardType: data.awardType,
+        deliveryDate: data.deliveryDate,
+        productDetails: data.productDetails,
+        termsAndConditionsIds: termsAndConditionsIds,
+        eventScheduleOption: startTimeOption,
+        eventStartTime: eventStartTime,
+        eventDurationOption: durationOption,
+        eventDuration: eventDuration,
+      };
+
+      console.log("1---", finalObject);
+    }
+  };
+
   return (
     <>
       <div className={styles.step_container}>
@@ -468,6 +521,7 @@ const NewEvent = () => {
                             checkedItems[item.termsconditionsid] || false
                           }
                           onChange={handleCheckChange}
+                          className={styles.tc_checkbox}
                         />
                         <label htmlFor={item.termsconditionsid}>
                           {item.termsandconditionstext}
@@ -542,6 +596,7 @@ const NewEvent = () => {
                     value="30 mins"
                     checked={durationOption === "30 mins"}
                     onChange={handleDurationOptionChange}
+                    className={styles.radio_input}
                   />
                   30 mins
                 </label>
@@ -551,6 +606,7 @@ const NewEvent = () => {
                     value="1hr"
                     checked={durationOption === "1hr"}
                     onChange={handleDurationOptionChange}
+                    className={styles.radio_input}
                   />
                   1hr
                 </label>
@@ -560,6 +616,7 @@ const NewEvent = () => {
                     value="4hr"
                     checked={durationOption === "4hr"}
                     onChange={handleDurationOptionChange}
+                    className={styles.radio_input}
                   />
                   4hr
                 </label>
@@ -569,6 +626,7 @@ const NewEvent = () => {
                     value="custom"
                     checked={durationOption === "custom"}
                     onChange={handleDurationOptionChange}
+                    className={styles.radio_input}
                   />
                   Custom
                 </label>
@@ -588,7 +646,15 @@ const NewEvent = () => {
               </div>
             </div>
             <div className={styles.publish_button_section}>
-              <button className={styles.publish_btn}>Publish</button>
+              <span className={styles.error_message_txt}>
+                {finalErrorMessage}
+              </span>
+              <button
+                className={styles.publish_btn}
+                onClick={handleFinalEventSubmit}
+              >
+                Publish
+              </button>
             </div>
           </div>
         )}

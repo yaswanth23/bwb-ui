@@ -447,12 +447,14 @@
   padding: 0.3rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+  cursor: pointer;
 }
 .publish_button_section {
   margin: 1rem 0 2rem 0;
-  display: flex;
+  display: grid;
   align-items: center;
   justify-content: flex-end;
+  gap: 0.5rem;
 }
 .publish_btn {
   border-radius: 0.5rem;
@@ -463,5 +465,8 @@
   font-size: 1rem;
   font-weight: 600;
   width: 10rem;
+  cursor: pointer;
+}
+.tc_checkbox {
   cursor: pointer;
 }
