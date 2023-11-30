@@ -1,0 +1,21 @@
+.countdown_section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.clock_icon {
+  font-size: 0.9rem;
+}
+.countdown_timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+.countdown_timer h1 {
+  font-size: 0.9rem;
+}
+.countdown_timer p {
+  font-size: 0.8rem;
+}

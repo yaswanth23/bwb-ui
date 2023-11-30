@@ -10,12 +10,15 @@ import { useSelector } from "react-redux";
 import { selectUserData } from "@/store/user/user.selector";
 import { GiPlainCircle } from "react-icons/gi";
 import { getEvents } from "@/utils/api/event";
+import Countdown from "./countDown/countDown";
 
 const Event = () => {
   const userData = useSelector(selectUserData);
   const [isNewEvent, setIsNewEvent] = useState(false);
   const [eventData, setEventData] = useState([]);
   const [status, setStatus] = useState("LIVE");
+
+  console.log("--->", eventData);
 
   const handleNewEvent = () => {
     setIsNewEvent(true);
@@ -78,9 +81,35 @@ const Event = () => {
           <div>
             {eventData.length > 0 ? (
               <>
-                {eventData.map((event) => (
-                  <div key={event.eventid}>Event name: {event.eventname}</div>
-                ))}
+                <div className={styles.event_card_section}>
+                  {eventData.map((event) => (
+                    <div key={event.eventid} className={styles.event_card}>
+                      <h1 className={styles.event_heading}>
+                        {event.eventname}
+                      </h1>
+                      <div className={styles.event_rfq_section}>
+                        <h1>RFQ</h1>
+                        <p>
+                          {
+                            JSON.parse(event.eventAttributesStore[0].value)
+                              .length
+                          }
+                          {JSON.parse(event.eventAttributesStore[0].value)
+                            .length > 1
+                            ? " Products"
+                            : " Product"}
+                        </p>
+                      </div>
+                      {status === "LIVE" ? (
+                        <div className={styles.live_counter_section}></div>
+                      ) : (
+                        <div className={styles.upcoming_counter_section}>
+                          <Countdown eventStartTime={event.eventstarttime} />
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </>
             ) : (
               <>
