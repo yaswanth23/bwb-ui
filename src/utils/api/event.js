@@ -37,3 +37,26 @@ export async function scheduleEvent(dataObj) {
   const data = await response.json();
   return data;
 }
+
+export async function getEvents(userId, status) {
+  const response = await fetch(
+    apiUrl + "/event?userId=" + userId + "&status=" + status,
+    {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    }
+  );
+
+  const data = await response.json();
+  return data;
+}
+
+export async function getEventsCount(userId) {
+  const response = await fetch(apiUrl + "/event/count/" + userId, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
+
+  const data = await response.json();
+  return data;
+}
