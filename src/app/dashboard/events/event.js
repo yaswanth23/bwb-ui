@@ -11,14 +11,13 @@ import { selectUserData } from "@/store/user/user.selector";
 import { GiPlainCircle } from "react-icons/gi";
 import { getEvents } from "@/utils/api/event";
 import Countdown from "./countDown/countDown";
+import EndCountdown from "./endCountDown/endCountDown";
 
 const Event = () => {
   const userData = useSelector(selectUserData);
   const [isNewEvent, setIsNewEvent] = useState(false);
   const [eventData, setEventData] = useState([]);
   const [status, setStatus] = useState("LIVE");
-
-  console.log("--->", eventData);
 
   const handleNewEvent = () => {
     setIsNewEvent(true);
@@ -101,7 +100,12 @@ const Event = () => {
                         </p>
                       </div>
                       {status === "LIVE" ? (
-                        <div className={styles.live_counter_section}></div>
+                        <div className={styles.live_counter_section}>
+                          <EndCountdown
+                            eventStartTime={event.eventstarttime}
+                            eventDuration={event.eventduration}
+                          />
+                        </div>
                       ) : (
                         <div className={styles.upcoming_counter_section}>
                           <Countdown eventStartTime={event.eventstarttime} />
