@@ -33,14 +33,49 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   cursor: pointer;
   gap: 0.5rem;
-  padding: 1rem;
+  padding: 0.8rem;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight:600;
   color: var(--white-color);
   background: var(--green-color);
   text-decoration: none;
   border: none;
+}
+.event_headers_section {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+}
+.live_btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+.live_active {
+  color: var(--green-color);
+}
+.upcoming_btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+.upcoming_active {
+  color: #ff7c03;
+}
+.circle_icon {
+  font-size: 0.7rem;
+}
+.event_section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
