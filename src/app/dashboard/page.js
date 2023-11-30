@@ -50,7 +50,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getEventsCount(userData.userId);
-      console.log(data);
+
       if (data?.data) {
         setDashboardItems((prevItems) =>
           prevItems.map((item) => {
