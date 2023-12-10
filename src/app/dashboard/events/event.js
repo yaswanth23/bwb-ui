@@ -40,7 +40,7 @@ const Event = () => {
     };
 
     fetchData();
-  }, []);
+  }, [status]);
 
   return (
     <div className={styles.container}>
