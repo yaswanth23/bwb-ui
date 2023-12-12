@@ -60,4 +60,5 @@
 .vendor_price,
 .total_price {
   font-size: 0.9rem;
+  font-weight: 500;
 }

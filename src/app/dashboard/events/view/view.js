@@ -62,7 +62,7 @@ const View = ({ data }) => {
                       {item.productComparisions.length > 0 &&
                         item.productComparisions.map((item, index) => (
                           <td key={index} className={styles.vendor_price}>
-                            {item.vendorprice}
+                            &#8377; {item.vendorprice}
                           </td>
                         ))}
                     </tr>
@@ -73,7 +73,7 @@ const View = ({ data }) => {
                       {item.productComparisions.length > 0 &&
                         item.productComparisions.map((item, index) => (
                           <td key={index} className={styles.total_price}>
-                            {item.totalPrice}
+                            &#8377; {item.totalPrice}
                           </td>
                         ))}
                     </tr>
