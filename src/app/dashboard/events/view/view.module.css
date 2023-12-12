@@ -5,3 +5,40 @@
   text-transform: capitalize;
   font-size: 1.1rem;
 }
+.product_section {
+  margin-top: 1rem;
+}
+.product_card_section {
+  padding: 1rem 0;
+  overflow-x: auto;
+}
+.table_container {
+  white-space: nowrap;
+  border-spacing: 0;
+  border: 1px solid var(--black-color);
+}
+.table_container th {
+  padding: 0.5rem;
+  font-size: 1rem;
+  text-align: left;
+}
+.product_headers h2 {
+  font-size: 1rem;
+  color: var(--primary-color);
+}
+.product_headers p {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--black-color);
+}
+.product_sub_headers {
+  font-size: 1rem;
+  color: var(--black-color);
+}
+.table_container th,
+.table_container td {
+  padding: 0.5rem;
+  text-align: left;
+  border: 1px solid var(--black-color);
+}
