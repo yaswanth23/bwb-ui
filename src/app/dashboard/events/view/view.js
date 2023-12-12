@@ -99,36 +99,44 @@ const View = ({ data }) => {
                     <tr>
                       <th></th>
                       {item.productComparisions.length > 0 &&
-                        item.productComparisions.map((item, index) => (
-                          <td key={index}>
-                            <div className={styles.a_r_btn_section}>
-                              <button
-                                className={styles.accept_btn}
-                                onClick={() =>
-                                  handleProductStausChange(
-                                    item.productid,
-                                    item.vendorDetails.userid,
-                                    "ACCEPTED"
-                                  )
-                                }
-                              >
-                                Accept
-                              </button>
-                              <button
-                                className={styles.reject_btn}
-                                onClick={() =>
-                                  handleProductStausChange(
-                                    item.productid,
-                                    item.vendorDetails.userid,
-                                    "REJECTED"
-                                  )
-                                }
-                              >
-                                Reject
-                              </button>
-                            </div>
-                          </td>
-                        ))}
+                        item.productComparisions.map((item, index) =>
+                          item.status === "OPEN" ? (
+                            <td key={index}>
+                              <div className={styles.a_r_btn_section}>
+                                <button
+                                  className={styles.accept_btn}
+                                  onClick={() =>
+                                    handleProductStausChange(
+                                      item.productid,
+                                      item.vendorDetails.userid,
+                                      "ACCEPTED"
+                                    )
+                                  }
+                                >
+                                  Accept
+                                </button>
+                                <button
+                                  className={styles.reject_btn}
+                                  onClick={() =>
+                                    handleProductStausChange(
+                                      item.productid,
+                                      item.vendorDetails.userid,
+                                      "REJECTED"
+                                    )
+                                  }
+                                >
+                                  Reject
+                                </button>
+                              </div>
+                            </td>
+                          ) : (
+                            <td key={index}>
+                              <h1 className={styles.status_text}>
+                                {item.status}
+                              </h1>
+                            </td>
+                          )
+                        )}
                     </tr>
                   </tbody>
                 </table>

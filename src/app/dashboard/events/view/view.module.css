@@ -87,3 +87,6 @@
   font-weight: 500;
   cursor: pointer;
 }
+.status_text {
+  font-size: 0.9rem;
+}
