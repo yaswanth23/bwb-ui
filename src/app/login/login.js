@@ -50,7 +50,6 @@ const Login = () => {
         dispatch(storeUserData(user.data.userDetails));
         router.push("/dashboard");
         router.refresh();
-        setIsLoading(false);
       } else {
         setErrorMessage("Invalid Credentials");
         setIsLoading(false);
