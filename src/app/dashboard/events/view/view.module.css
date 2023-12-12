@@ -22,12 +22,16 @@
   font-size: 1rem;
   text-align: left;
 }
+.product_headers {
+  height: 7rem;
+  width: 10rem;
+}
 .product_headers h2 {
   font-size: 1rem;
   color: var(--primary-color);
+  margin-bottom: 0.5rem;
 }
 .product_headers p {
-  margin-top: 0.5rem;
   font-size: 0.8rem;
   font-weight: 500;
   color: var(--black-color);

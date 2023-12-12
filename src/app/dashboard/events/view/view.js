@@ -36,12 +36,9 @@ const View = ({ data }) => {
                     <tr>
                       <th className={styles.product_headers}>
                         <h2>{item.product}</h2>
-                        <p>Requested at {item.deliverylocation}</p>
-                      </th>
-                    </tr>
-                    <tr>
-                      <th className={styles.product_sub_headers}>
-                        Quantity req: {item.quantity}
+                        <p>Variant: {item.productvariant}</p>
+                        <p>Delivery: {item.deliverylocation}</p>
+                        <p>Quantity req: {item.quantity}</p>
                       </th>
                     </tr>
                     <tr>
