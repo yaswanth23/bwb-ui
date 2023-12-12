@@ -60,3 +60,16 @@ export async function getEventsCount(userId) {
   const data = await response.json();
   return data;
 }
+
+export async function getUserEventDetails(userId, eventId) {
+  const response = await fetch(
+    apiUrl + "/event/user/details/" + userId + "/" + eventId,
+    {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    }
+  );
+
+  const data = await response.json();
+  return data;
+}

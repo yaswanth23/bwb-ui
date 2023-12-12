@@ -1,0 +1,7 @@
+.container {
+  margin-top: 2rem;
+}
+.first_section h1 {
+  text-transform: capitalize;
+  font-size: 1.1rem;
+}
