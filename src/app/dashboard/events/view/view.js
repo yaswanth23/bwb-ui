@@ -4,7 +4,10 @@ import React, { useEffect, useState, useReducer } from "react";
 import styles from "./view.module.css";
 import { useSelector } from "react-redux";
 import { selectUserData } from "@/store/user/user.selector";
-import { getUserEventDetails } from "@/utils/api/event";
+import {
+  getUserEventDetails,
+  changeUserProductStatus,
+} from "@/utils/api/event";
 
 const View = ({ data }) => {
   const userData = useSelector(selectUserData);
@@ -20,6 +23,22 @@ const View = ({ data }) => {
 
     fetchData();
   }, [data]);
+
+  const handleProductStausChange = async (productId, vendorUserId, status) => {
+    const request = {
+      userId: userData.userId,
+      vendorUserId: vendorUserId,
+      productId: productId,
+      status: status,
+    };
+
+    await changeUserProductStatus(request);
+
+    const response = await getUserEventDetails(userData.userId, data.eventid);
+    if (response?.data?.statusCode === 200) {
+      setEventDetails(response.data.eventDetails);
+    }
+  };
 
   return (
     <>
@@ -74,6 +93,40 @@ const View = ({ data }) => {
                         item.productComparisions.map((item, index) => (
                           <td key={index} className={styles.total_price}>
                             &#8377; {item.totalPrice}
+                          </td>
+                        ))}
+                    </tr>
+                    <tr>
+                      <th></th>
+                      {item.productComparisions.length > 0 &&
+                        item.productComparisions.map((item, index) => (
+                          <td key={index}>
+                            <div className={styles.a_r_btn_section}>
+                              <button
+                                className={styles.accept_btn}
+                                onClick={() =>
+                                  handleProductStausChange(
+                                    item.productid,
+                                    item.vendorDetails.userid,
+                                    "ACCEPTED"
+                                  )
+                                }
+                              >
+                                Accept
+                              </button>
+                              <button
+                                className={styles.reject_btn}
+                                onClick={() =>
+                                  handleProductStausChange(
+                                    item.productid,
+                                    item.vendorDetails.userid,
+                                    "REJECTED"
+                                  )
+                                }
+                              >
+                                Reject
+                              </button>
+                            </div>
                           </td>
                         ))}
                     </tr>
