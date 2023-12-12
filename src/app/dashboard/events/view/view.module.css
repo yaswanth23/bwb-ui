@@ -46,3 +46,7 @@
   text-align: left;
   border: 1px solid var(--black-color);
 }
+.no_available_text {
+  font-size: 1rem;
+  font-weight: bold;
+}

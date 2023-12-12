@@ -40,6 +40,11 @@ const View = ({ data }) => {
                         <p>Delivery: {item.deliverylocation}</p>
                         <p>Quantity req: {item.quantity}</p>
                       </th>
+                      {item.productComparisions.length > 0 ? (
+                        <td>hi</td>
+                      ) : (
+                        <td className={styles.no_available_text}>No Quotes available</td>
+                      )}
                     </tr>
                     <tr>
                       <th className={styles.product_sub_headers}>
