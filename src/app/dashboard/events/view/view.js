@@ -41,20 +41,41 @@ const View = ({ data }) => {
                         <p>Quantity req: {item.quantity}</p>
                       </th>
                       {item.productComparisions.length > 0 ? (
-                        <td>hi</td>
+                        item.productComparisions.map((item, index) => (
+                          <td key={index} className={styles.available_text}>
+                            <p className={styles.vendor_name}>
+                              {item.vendorDetails.organisationname}
+                            </p>
+                            <p>Vendor {index + 1}</p>
+                          </td>
+                        ))
                       ) : (
-                        <td className={styles.no_available_text}>No Quotes available</td>
+                        <td className={styles.no_available_text}>
+                          No Quotes available
+                        </td>
                       )}
                     </tr>
                     <tr>
                       <th className={styles.product_sub_headers}>
                         Price per unit
                       </th>
+                      {item.productComparisions.length > 0 &&
+                        item.productComparisions.map((item, index) => (
+                          <td key={index} className={styles.vendor_price}>
+                            {item.vendorprice}
+                          </td>
+                        ))}
                     </tr>
                     <tr>
                       <th className={styles.product_sub_headers}>
                         Total Amount
                       </th>
+                      {item.productComparisions.length > 0 &&
+                        item.productComparisions.map((item, index) => (
+                          <td key={index} className={styles.total_price}>
+                            {item.totalPrice}
+                          </td>
+                        ))}
                     </tr>
                   </tbody>
                 </table>

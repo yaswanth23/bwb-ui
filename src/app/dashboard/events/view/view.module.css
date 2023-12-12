@@ -50,3 +50,14 @@
   font-size: 1rem;
   font-weight: bold;
 }
+.available_text {
+  font-size: 1rem;
+  font-weight: bold;
+}
+.vendor_name {
+  color: var(--primary-color);
+}
+.vendor_price,
+.total_price {
+  font-size: 0.9rem;
+}
