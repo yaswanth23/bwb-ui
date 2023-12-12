@@ -89,7 +89,7 @@
 .event_card {
   border-radius: 0.3rem;
   background-color: #e9f0fc;
-  /* padding: 1rem; */
+  cursor: pointer;
 }
 .event_heading {
   font-size: 0.9rem;
