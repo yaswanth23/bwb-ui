@@ -13,6 +13,7 @@ import { getEvents } from "@/utils/api/event";
 import Countdown from "./countDown/countDown";
 import EndCountdown from "./endCountDown/endCountDown";
 import View from "./view/view";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
 
 const Event = () => {
   const userData = useSelector(selectUserData);
@@ -21,7 +22,7 @@ const Event = () => {
   const [status, setStatus] = useState("LIVE");
   const [isView, setIsView] = useState(false);
   const [viewEventData, setViewEventData] = useState({});
-
+  console.log(eventData);
   const handleNewEvent = () => {
     setIsNewEvent(true);
   };
@@ -104,17 +105,26 @@ const Event = () => {
                             {event.eventname}
                           </h1>
                           <div className={styles.event_rfq_section}>
-                            <h1>RFQ</h1>
-                            <p>
-                              {
-                                JSON.parse(event.eventAttributesStore[0].value)
-                                  .length
-                              }
-                              {JSON.parse(event.eventAttributesStore[0].value)
-                                .length > 1
-                                ? " Products"
-                                : " Product"}
-                            </p>
+                            <div className={styles.event_rfq_section_one}>
+                              <h1>RFQ</h1>
+                              <p>
+                                {
+                                  JSON.parse(
+                                    event.eventAttributesStore[0].value
+                                  ).length
+                                }
+                                {JSON.parse(event.eventAttributesStore[0].value)
+                                  .length > 1
+                                  ? " Products"
+                                  : " Product"}
+                              </p>
+                            </div>
+                            <div className={styles.event_rfq_section_two}>
+                              <MdOutlineRemoveRedEye
+                                className={styles.eye_icon}
+                              />
+                              <p>{event.vendorscount}</p>
+                            </div>
                           </div>
                           {status === "LIVE" ? (
                             <div className={styles.live_counter_section}>
