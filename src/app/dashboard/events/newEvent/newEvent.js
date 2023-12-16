@@ -59,7 +59,13 @@ const NewEvent = () => {
       const updateData = { ...prev, ...next };
       return updateData;
     },
-    { eventTitle: "", awardType: 1, deliveryDate: null, productDetails: [] }
+    {
+      eventTitle: "",
+      awardType: 1,
+      fromDeliveryDate: null,
+      toDeliveryDate: null,
+      productDetails: [],
+    }
   );
 
   const [productData, updateProductData] = useReducer(
@@ -293,8 +299,12 @@ const NewEvent = () => {
       setFinalErrorMessage("Please Add Product Details");
       errorFlag = true;
     }
-    if (!data.deliveryDate) {
-      setFinalErrorMessage("Please select Delivery Date");
+    if (!data.toDeliveryDate) {
+      setFinalErrorMessage("Please select to Delivery Date");
+      errorFlag = true;
+    }
+    if (!data.fromDeliveryDate) {
+      setFinalErrorMessage("Please select from Delivery Date");
       errorFlag = true;
     }
     if (!data.eventTitle) {
@@ -309,7 +319,8 @@ const NewEvent = () => {
         userId: userData.userId,
         eventTitle: data.eventTitle,
         awardType: data.awardType,
-        deliveryDate: data.deliveryDate,
+        fromDeliveryDate: data.fromDeliveryDate,
+        toDeliveryDate: data.toDeliveryDate,
         productDetails: data.productDetails,
         termsAndConditionsIds: termsAndConditionsIds,
         eventScheduleOption: startTimeOption,
@@ -402,13 +413,25 @@ const NewEvent = () => {
               </div>
             </div>
             <div className={styles.delivery_date_section}>
-              <h2>Delivery Date</h2>
-              <DatePicker
-                selected={data.deliveryDate}
-                onChange={(date) => updateData({ deliveryDate: date })}
-                minDate={new Date()}
-                placeholderText="Select Delivery Date"
-              />
+              <h2>Select Delivery Date range</h2>
+              <div className={styles.sub_delivery_date_section}>
+                <label>From:</label>
+                <DatePicker
+                  selected={data.fromDeliveryDate}
+                  onChange={(date) => updateData({ fromDeliveryDate: date })}
+                  minDate={new Date()}
+                  placeholderText="From Date"
+                />
+              </div>
+              <div className={styles.sub_delivery_date_section}>
+                <label>To:</label>
+                <DatePicker
+                  selected={data.toDeliveryDate}
+                  onChange={(date) => updateData({ toDeliveryDate: date })}
+                  minDate={new Date()}
+                  placeholderText="To Date"
+                />
+              </div>
             </div>
             {stepCount === 0 && (
               <div className={styles.buttons_container}>
