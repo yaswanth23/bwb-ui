@@ -22,7 +22,7 @@ const Event = () => {
   const [status, setStatus] = useState("LIVE");
   const [isView, setIsView] = useState(false);
   const [viewEventData, setViewEventData] = useState({});
-  console.log(eventData);
+
   const handleNewEvent = () => {
     setIsNewEvent(true);
   };

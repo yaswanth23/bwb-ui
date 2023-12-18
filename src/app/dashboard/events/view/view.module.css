@@ -13,9 +13,11 @@
   overflow-x: auto;
 }
 .table_container {
-  white-space: nowrap;
+  border: 1.2px solid var(--black-color);
+  border-collapse: separate;
   border-spacing: 0;
-  border: 1px solid var(--black-color);
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 .table_container th {
   padding: 0.5rem;
@@ -23,8 +25,9 @@
   text-align: left;
 }
 .product_headers {
-  height: 7rem;
-  width: 10rem;
+  height: 10rem;
+  width: 12rem;
+  background-color: #e6edff;
 }
 .product_headers h2 {
   font-size: 1rem;
@@ -53,6 +56,8 @@
 .available_text {
   font-size: 1rem;
   font-weight: bold;
+  height: 10rem;
+  width: 12rem;
 }
 .vendor_name {
   color: var(--primary-color);
@@ -89,4 +94,8 @@
 }
 .status_text {
   font-size: 0.9rem;
+}
+.product_td_sec {
+  font-size: 1rem;
+  font-weight: 500;
 }

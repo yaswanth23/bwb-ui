@@ -54,10 +54,10 @@ const View = ({ data }) => {
                   <tbody>
                     <tr>
                       <th className={styles.product_headers}>
-                        <h2>{item.product}</h2>
+                        {/* <h2>{item.product}</h2>
                         <p>Variant: {item.productvariant}</p>
                         <p>Delivery: {item.deliverylocation}</p>
-                        <p>Quantity req: {item.quantity}</p>
+                        <p>Quantity req: {item.quantity}</p> */}
                       </th>
                       {item.productComparisions.length > 0 ? (
                         item.productComparisions.map((item, index) => (
@@ -75,9 +75,30 @@ const View = ({ data }) => {
                       )}
                     </tr>
                     <tr>
+                      <th className={styles.product_sub_headers}>Sum Total</th>
+                      {item.productComparisions.length > 0 &&
+                        item.productComparisions.map((item, index) => (
+                          <td key={index} className={styles.total_price}>
+                            &#8377; {item.totalPrice}
+                          </td>
+                        ))}
+                    </tr>
+                    <tr>
+                      <td
+                        colSpan={item.productComparisions.length + 1}
+                        className={styles.product_td_sec}
+                      >
+                        {item.product}
+                      </td>
+                    </tr>
+                    <tr>
                       <th className={styles.product_sub_headers}>
-                        Price per unit
+                        Quantity Available
                       </th>
+                      <td className={styles.vendor_price}>{item.quantity}</td>
+                    </tr>
+                    <tr>
+                      <th className={styles.product_sub_headers}>Price</th>
                       {item.productComparisions.length > 0 &&
                         item.productComparisions.map((item, index) => (
                           <td key={index} className={styles.vendor_price}>
@@ -86,9 +107,7 @@ const View = ({ data }) => {
                         ))}
                     </tr>
                     <tr>
-                      <th className={styles.product_sub_headers}>
-                        Total Amount
-                      </th>
+                      <th className={styles.product_sub_headers}>Sum Total</th>
                       {item.productComparisions.length > 0 &&
                         item.productComparisions.map((item, index) => (
                           <td key={index} className={styles.total_price}>
