@@ -76,16 +76,23 @@ const View = ({ data }) => {
                     </tr>
                     <tr>
                       <th className={styles.product_sub_headers}>Sum Total</th>
-                      {item.productComparisions.length > 0 &&
+                      {item.productComparisions.length > 0 ? (
                         item.productComparisions.map((item, index) => (
                           <td key={index} className={styles.total_price}>
                             &#8377; {item.totalPrice}
                           </td>
-                        ))}
+                        ))
+                      ) : (
+                        <td className={styles.total_price}>-</td>
+                      )}
                     </tr>
                     <tr>
                       <td
-                        colSpan={item.productComparisions.length + 1}
+                        colSpan={
+                          item.productComparisions.length > 0
+                            ? item.productComparisions.length + 1
+                            : 2
+                        }
                         className={styles.product_td_sec}
                       >
                         {item.product}
@@ -95,68 +102,80 @@ const View = ({ data }) => {
                       <th className={styles.product_sub_headers}>
                         Quantity Available
                       </th>
-                      <td className={styles.vendor_price}>{item.quantity}</td>
+                      {item.productComparisions.length > 0 ? (
+                        <td className={styles.vendor_price}>{item.quantity}</td>
+                      ) : (
+                        <td className={styles.vendor_price}>-</td>
+                      )}
                     </tr>
                     <tr>
                       <th className={styles.product_sub_headers}>Price</th>
-                      {item.productComparisions.length > 0 &&
+                      {item.productComparisions.length > 0 ? (
                         item.productComparisions.map((item, index) => (
                           <td key={index} className={styles.vendor_price}>
                             &#8377; {item.vendorprice}
                           </td>
-                        ))}
+                        ))
+                      ) : (
+                        <td className={styles.vendor_price}>-</td>
+                      )}
                     </tr>
                     <tr>
                       <th className={styles.product_sub_headers}>Sum Total</th>
-                      {item.productComparisions.length > 0 &&
+                      {item.productComparisions.length > 0 ? (
                         item.productComparisions.map((item, index) => (
                           <td key={index} className={styles.total_price}>
                             &#8377; {item.totalPrice}
                           </td>
-                        ))}
+                        ))
+                      ) : (
+                        <td className={styles.total_price}>-</td>
+                      )}
                     </tr>
-                    <tr>
-                      <th></th>
-                      {item.productComparisions.length > 0 &&
-                        item.productComparisions.map((item, index) =>
-                          item.status === "OPEN" ? (
-                            <td key={index}>
-                              <div className={styles.a_r_btn_section}>
-                                <button
-                                  className={styles.accept_btn}
-                                  onClick={() =>
-                                    handleProductStausChange(
-                                      item.productid,
-                                      item.vendorDetails.userid,
-                                      "ACCEPTED"
-                                    )
-                                  }
-                                >
-                                  Accept
-                                </button>
-                                <button
-                                  className={styles.reject_btn}
-                                  onClick={() =>
-                                    handleProductStausChange(
-                                      item.productid,
-                                      item.vendorDetails.userid,
-                                      "REJECTED"
-                                    )
-                                  }
-                                >
-                                  Reject
-                                </button>
-                              </div>
-                            </td>
-                          ) : (
-                            <td key={index}>
-                              <h1 className={styles.status_text}>
-                                {item.status}
-                              </h1>
-                            </td>
-                          )
-                        )}
-                    </tr>
+                    {item.productComparisions.length > 0 && (
+                      <tr>
+                        <th></th>
+                        {item.productComparisions.length > 0 &&
+                          item.productComparisions.map((item, index) =>
+                            item.status === "OPEN" ? (
+                              <td key={index}>
+                                <div className={styles.a_r_btn_section}>
+                                  <button
+                                    className={styles.accept_btn}
+                                    onClick={() =>
+                                      handleProductStausChange(
+                                        item.productid,
+                                        item.vendorDetails.userid,
+                                        "ACCEPTED"
+                                      )
+                                    }
+                                  >
+                                    Accept
+                                  </button>
+                                  <button
+                                    className={styles.reject_btn}
+                                    onClick={() =>
+                                      handleProductStausChange(
+                                        item.productid,
+                                        item.vendorDetails.userid,
+                                        "REJECTED"
+                                      )
+                                    }
+                                  >
+                                    Reject
+                                  </button>
+                                </div>
+                              </td>
+                            ) : (
+                              <td key={index}>
+                                <h1 className={styles.status_text}>
+                                  {item.status}
+                                </h1>
+                              </td>
+                            )
+                          )}
+                      </tr>
+                    )}
                   </tbody>
                 </table>
               </div>
