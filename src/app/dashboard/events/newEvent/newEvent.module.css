@@ -432,10 +432,12 @@
   border-radius: 4px;
   cursor: pointer;
 }
-.event_duration_container {
+.event_duration_container,
+.vendor_limit {
   margin-top: 1rem;
 }
-.event_duration_container h1 {
+.event_duration_container h1,
+.vendor_limit h1 {
   font-size: 1rem;
 }
 .event_duration_options_section {
@@ -477,4 +479,13 @@
 }
 .tc_checkbox {
   cursor: pointer;
+}
+.vl_input {
+  margin-top: 1rem;
+  width: 7rem;
+  padding: 0.5rem;
+  border: 1px solid var(--black-color);
+  font-size: 0.9rem;
+  border-radius: 0.2rem;
+  font-family: "Montserrat", sans-serif;
 }

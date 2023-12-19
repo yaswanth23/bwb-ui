@@ -65,6 +65,7 @@ const NewEvent = () => {
       fromDeliveryDate: null,
       toDeliveryDate: null,
       productDetails: [],
+      vendorlimit: null,
     }
   );
 
@@ -280,6 +281,11 @@ const NewEvent = () => {
     let termsAndConditionsIds = [];
     let errorFlag = false;
 
+    if (!data.vendorlimit) {
+      setFinalErrorMessage("Please provide vendor limit");
+      errorFlag = true;
+    }
+
     if (checkedItems) {
       for (let [key, value] of Object.entries(checkedItems)) {
         if (value) {
@@ -327,6 +333,7 @@ const NewEvent = () => {
         eventStartTime: eventStartTime,
         eventDurationOption: durationOption,
         eventDuration: eventDuration,
+        vendorLimit: Number(data.vendorlimit),
       };
 
       const result = await scheduleEvent(finalObject);
@@ -686,6 +693,15 @@ const NewEvent = () => {
                   </select>
                 )}
               </div>
+            </div>
+            <div className={styles.vendor_limit}>
+              <h1>Vendor Limit:</h1>
+              <input
+                type="text"
+                onChange={(e) => updateData({ vendorlimit: e.target.value })}
+                placeholder="Limit"
+                className={styles.vl_input}
+              />
             </div>
             <div className={styles.publish_button_section}>
               <span className={styles.error_message_txt}>
