@@ -1,9 +1,25 @@
 .container {
   margin-top: 2rem;
 }
+.first_section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .first_section h1 {
   text-transform: capitalize;
   font-size: 1.1rem;
+}
+.download_po_btn {
+  text-decoration: none;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
 }
 .product_section {
   margin-top: 1rem;

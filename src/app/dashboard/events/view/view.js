@@ -12,7 +12,7 @@ import {
 const View = ({ data }) => {
   const userData = useSelector(selectUserData);
   const [eventDetails, setEventDetails] = useState(null);
-  console.log(eventDetails);
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await getUserEventDetails(userData.userId, data.eventid);
@@ -45,6 +45,15 @@ const View = ({ data }) => {
       <div className={styles.container}>
         <div className={styles.first_section}>
           <h1>{data.eventname}</h1>
+          {eventDetails?.purchaseOrderUrl && (
+            <a
+              href={eventDetails.purchaseOrderUrl}
+              download
+              className={styles.download_po_btn}
+            >
+              Download PO
+            </a>
+          )}
         </div>
         <div className={styles.product_section}>
           {eventDetails &&
