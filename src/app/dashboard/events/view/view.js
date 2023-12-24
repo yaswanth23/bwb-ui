@@ -84,7 +84,7 @@ const View = ({ data }) => {
                       )}
                     </tr>
                     <tr>
-                      <th className={styles.product_sub_headers}>Sum Total</th>
+                      <th className={styles.product_sub_headers}>Total Amount</th>
                       {item.productComparisions.length > 0 ? (
                         item.productComparisions.map((item, index) => (
                           <td key={index} className={styles.total_price}>
