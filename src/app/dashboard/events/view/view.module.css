@@ -42,7 +42,7 @@
 }
 .product_headers {
   height: 10rem;
-  width: 16rem;
+  width: 18rem;
   background-color: #e6edff;
 }
 .product_headers h2 {
@@ -56,32 +56,46 @@
   color: var(--black-color);
 }
 .product_sub_headers {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--black-color);
 }
-.table_container th,
+.table_container th {
+  padding: 0.6rem 2rem;
+  text-align: left;
+  border: 1px solid var(--black-color);
+}
 .table_container td {
-  padding: 0.5rem;
+  padding: 0.6rem 2rem;
   text-align: left;
   border: 1px solid var(--black-color);
 }
 .no_available_text {
   font-size: 1rem;
   font-weight: bold;
+  height: 10rem;
+  width: 18rem;
 }
 .available_text {
   font-size: 1rem;
   font-weight: bold;
   height: 10rem;
-  width: 12rem;
+  width: 18rem;
 }
 .vendor_name {
   color: var(--primary-color);
 }
-.vendor_price,
-.total_price {
+.vendor_context {
   font-size: 0.9rem;
   font-weight: 500;
+}
+.total_price {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--green-color);
+}
+.sum_total {
+  font-size: 1rem;
+  font-weight: bolder;
 }
 .a_r_btn_section {
   display: flex;
@@ -112,7 +126,11 @@
   font-size: 0.9rem;
 }
 .product_td_sec {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--primary-color);
+}
+.product_sub_text_headers {
+  font-size: 0.9rem;
+  font-weight: 500;
 }
