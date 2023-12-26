@@ -12,7 +12,7 @@ import {
 const View = ({ data }) => {
   const userData = useSelector(selectUserData);
   const [eventDetails, setEventDetails] = useState(null);
-  console.log("--->", eventDetails);
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await getUserEventDetails(userData.userId, data.eventid);
@@ -299,6 +299,18 @@ const View = ({ data }) => {
                       eventDetails.vendorComparisons.map((item, index) => (
                         <td key={index} className={styles.sum_total}>
                           &#8377; {item.sumTotal}
+                          <button
+                            className={styles.reject_btn}
+                            // onClick={() =>
+                            //   handleProductStausChange(
+                            //     item.productid,
+                            //     item.vendorDetails.userid,
+                            //     "REJECTED"
+                            //   )
+                            // }
+                          >
+                            Reject
+                          </button>
                         </td>
                       ))}
                   </tr>

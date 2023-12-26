@@ -113,14 +113,15 @@
   cursor: pointer;
 }
 .reject_btn {
-  background-color: var(--red-color);
-  color: var(--white-color);
-  border: none;
-  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: var(--red-color);
+  border: 1.5px solid var(--red-color);
+  padding: 0.4rem 1rem;
   border-radius: 0.3rem;
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
+  margin-left: 2rem;
 }
 .status_text {
   font-size: 0.9rem;
