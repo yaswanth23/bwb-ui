@@ -24,11 +24,11 @@ const View = ({ data }) => {
     fetchData();
   }, [data]);
 
-  const handleProductStausChange = async (productId, vendorUserId, status) => {
+  const handleProductStausChange = async (vendorUserId, status) => {
     const request = {
       userId: userData.userId,
       vendorUserId: vendorUserId,
-      productId: productId,
+      eventId: data.eventid,
       status: status,
     };
 
@@ -296,18 +296,17 @@ const View = ({ data }) => {
                   <tr>
                     <th className={styles.product_sub_headers}>Sum Total</th>
                     {eventDetails.vendorComparisons.length > 0 &&
-                      eventDetails.vendorComparisons.map((item, index) => (
+                      eventDetails.vendorComparisons.map((vc, index) => (
                         <td key={index} className={styles.sum_total}>
-                          &#8377; {item.sumTotal}
+                          &#8377; {vc.sumTotal}
                           <button
                             className={styles.reject_btn}
-                            // onClick={() =>
-                            //   handleProductStausChange(
-                            //     item.productid,
-                            //     item.vendorDetails.userid,
-                            //     "REJECTED"
-                            //   )
-                            // }
+                            onClick={() =>
+                              handleProductStausChange(
+                                vc.vendoruserid,
+                                "REJECTED"
+                              )
+                            }
                           >
                             Reject
                           </button>
