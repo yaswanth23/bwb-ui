@@ -200,12 +200,50 @@ const View = ({ data }) => {
                   <tr>
                     <th className={styles.product_headers}></th>
                     {eventDetails.vendorComparisons.length > 0 ? (
-                      eventDetails.vendorComparisons.map((item, index) => (
+                      eventDetails.vendorComparisons.map((vc, index) => (
                         <td key={index} className={styles.available_text}>
                           <p className={styles.vendor_name}>
-                            {item.organisationname}
+                            {vc.organisationname}
                           </p>
                           <p>Vendor {index + 1}</p>
+                          <div className={styles.header_buttons}>
+                            {vc.status === "OPEN" ? (
+                              <>
+                                <button
+                                  className={styles.accept_btn}
+                                  onClick={() =>
+                                    handleProductStausChange(
+                                      vc.vendoruserid,
+                                      "ACCEPTED"
+                                    )
+                                  }
+                                >
+                                  Accept
+                                </button>
+                                <button
+                                  className={styles.counter_btn}
+                                  // onClick={() =>
+                                  //   handleProductStausChange(
+                                  //     vc.vendoruserid,
+                                  //     "ACCEPTED"
+                                  //   )
+                                  // }
+                                >
+                                  Counter
+                                </button>
+                              </>
+                            ) : (
+                              <p
+                                className={`${
+                                  vc.status === "ACCEPTED"
+                                    ? styles.accepted_status_text
+                                    : styles.rejected_status_text
+                                }`}
+                              >
+                                {vc.status}
+                              </p>
+                            )}
+                          </div>
                         </td>
                       ))
                     ) : (
@@ -299,17 +337,19 @@ const View = ({ data }) => {
                       eventDetails.vendorComparisons.map((vc, index) => (
                         <td key={index} className={styles.sum_total}>
                           &#8377; {vc.sumTotal}
-                          <button
-                            className={styles.reject_btn}
-                            onClick={() =>
-                              handleProductStausChange(
-                                vc.vendoruserid,
-                                "REJECTED"
-                              )
-                            }
-                          >
-                            Reject
-                          </button>
+                          {vc.status === "OPEN" && (
+                            <button
+                              className={styles.reject_btn}
+                              onClick={() =>
+                                handleProductStausChange(
+                                  vc.vendoruserid,
+                                  "REJECTED"
+                                )
+                              }
+                            >
+                              Reject
+                            </button>
+                          )}
                         </td>
                       ))}
                   </tr>

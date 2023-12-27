@@ -106,10 +106,20 @@
   background-color: var(--green-color);
   color: var(--white-color);
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.3rem;
+  padding: 0.4rem 1rem;
+  border-radius: 2rem;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
+  cursor: pointer;
+}
+.counter_btn {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
 }
 .reject_btn {
@@ -117,14 +127,19 @@
   color: var(--red-color);
   border: 1.5px solid var(--red-color);
   padding: 0.4rem 1rem;
-  border-radius: 0.3rem;
+  border-radius: 2rem;
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
   margin-left: 2rem;
 }
-.status_text {
+.accepted_status_text {
   font-size: 0.9rem;
+  color: var(--green-color);
+}
+.rejected_status_text {
+  font-size: 0.9rem;
+  color: var(--red-color);
 }
 .product_td_sec {
   font-size: 1.1rem;
@@ -134,4 +149,10 @@
 .product_sub_text_headers {
   font-size: 0.9rem;
   font-weight: 500;
+}
+.header_buttons {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
