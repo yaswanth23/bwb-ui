@@ -74,7 +74,13 @@ const NewEvent = () => {
       const updateProductData = { ...prev, ...next };
       return updateProductData;
     },
-    { product: "", productVariant: "", quantity: null, deliveryLocation: "" }
+    {
+      product: "",
+      productVariant: "",
+      quantity: null,
+      quantityType: "",
+      deliveryLocation: "",
+    }
   );
 
   const openModalOne = () => {
@@ -150,6 +156,9 @@ const NewEvent = () => {
     if (!productData.deliveryLocation) {
       setProductErrorMessage("Please Enter Delivery Location");
     }
+    if (!productData.quantityType) {
+      setProductErrorMessage("Please Select Quantity Type");
+    }
     if (!productData.quantity) {
       setProductErrorMessage("Please Enter Quantity");
     }
@@ -164,6 +173,7 @@ const NewEvent = () => {
       productData.product &&
       productData.productVariant &&
       productData.quantity &&
+      productData.quantityType &&
       productData.deliveryLocation
     ) {
       updateData({
@@ -173,6 +183,7 @@ const NewEvent = () => {
             product: productData.product,
             productVariant: productData.productVariant,
             quantity: productData.quantity,
+            quantityType: productData.quantityType,
             deliveryLocation: productData.deliveryLocation,
           },
         ],
@@ -181,6 +192,7 @@ const NewEvent = () => {
         product: "",
         productVariant: "",
         quantity: null,
+        quantityType: "",
         deliveryLocation: "",
       });
       setProductErrorMessage("");
@@ -192,6 +204,9 @@ const NewEvent = () => {
     if (!productData.deliveryLocation) {
       setProductErrorMessage("Please Enter Delivery Location");
     }
+    if (!productData.quantityType) {
+      setProductErrorMessage("Please Select Quantity Type");
+    }
     if (!productData.quantity) {
       setProductErrorMessage("Please Enter Quantity");
     }
@@ -206,6 +221,7 @@ const NewEvent = () => {
       productData.product &&
       productData.productVariant &&
       productData.quantity &&
+      productData.quantityType &&
       productData.deliveryLocation
     ) {
       const newProductDetails = data.productDetails.map((item, index) => {
@@ -214,6 +230,7 @@ const NewEvent = () => {
             product: productData.product,
             productVariant: productData.productVariant,
             quantity: productData.quantity,
+            quantityType: productData.quantityType,
             deliveryLocation: productData.deliveryLocation,
           };
         } else {
@@ -225,6 +242,7 @@ const NewEvent = () => {
         product: "",
         productVariant: "",
         quantity: null,
+        quantityType: "",
         deliveryLocation: "",
       });
       setProductErrorMessage("");
@@ -256,12 +274,13 @@ const NewEvent = () => {
         if (finalData.length > 1) {
           finalData.map((item, index) => {
             if (index !== 0) {
-              if (item.length === 4) {
+              if (item.length === 5) {
                 let obj = {
                   product: item[0],
                   productVariant: item[1],
                   quantity: item[2],
-                  deliveryLocation: item[3],
+                  quantityType: item[3],
+                  deliveryLocation: item[4],
                 };
                 productDetails.push(obj);
               }
@@ -480,6 +499,7 @@ const NewEvent = () => {
                     <th>Product</th>
                     <th>Product Variant</th>
                     <th>Quantity</th>
+                    <th>Qty Type</th>
                     <th>Delivery Location</th>
                     <th>Action</th>
                   </tr>
@@ -495,6 +515,7 @@ const NewEvent = () => {
                       <td>{item.product}</td>
                       <td>{item.productVariant}</td>
                       <td>{item.quantity}</td>
+                      <td>{item.quantityType}</td>
                       <td>{item.deliveryLocation}</td>
                       <td>
                         <BiEditAlt
@@ -505,6 +526,7 @@ const NewEvent = () => {
                               product: item.product,
                               productVariant: item.productVariant,
                               quantity: item.quantity,
+                              quantityType: item.quantityType,
                               deliveryLocation: item.deliveryLocation,
                             });
                           }}
@@ -807,6 +829,19 @@ const NewEvent = () => {
               placeholder="Enter Quantity"
               id="quantity"
             />
+            <label htmlFor="quantityType">Quantity Type:</label>
+            <select
+              className={styles.product_type_input}
+              defaultValue={productData.quantityType || "Select Qty Type"}
+              onChange={(e) =>
+                updateProductData({ quantityType: e.target.value })
+              }
+              id="quantityType"
+            >
+              <option value="Piece">Piece</option>
+              <option value="KG">KG</option>
+              <option value="Litre">Litre</option>
+            </select>
             <label htmlFor="deliveryLocation">Delivery Location:</label>
             <input
               type="text"
@@ -832,6 +867,7 @@ const NewEvent = () => {
                   product: "",
                   productVariant: "",
                   quantity: null,
+                  quantityType: "",
                   deliveryLocation: "",
                 });
               }}
@@ -900,6 +936,19 @@ const NewEvent = () => {
               placeholder="Enter Quantity"
               id="quantity"
             />
+            <label htmlFor="quantityType">Quantity Type:</label>
+            <select
+              className={styles.product_type_input}
+              defaultValue={productData.quantityType || "Piece"}
+              onChange={(e) =>
+                updateProductData({ quantityType: e.target.value })
+              }
+              id="quantityType"
+            >
+              <option value="Piece">Piece</option>
+              <option value="KG">KG</option>
+              <option value="Litre">Litre</option>
+            </select>
             <label htmlFor="deliveryLocation">Delivery Location:</label>
             <input
               type="text"
