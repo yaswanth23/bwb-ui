@@ -435,7 +435,7 @@ const NewEvent = () => {
                 <DatePicker
                   selected={data.toDeliveryDate}
                   onChange={(date) => updateData({ toDeliveryDate: date })}
-                  minDate={new Date()}
+                  minDate={data.fromDeliveryDate || new Date()}
                   placeholderText="To Date"
                 />
               </div>
