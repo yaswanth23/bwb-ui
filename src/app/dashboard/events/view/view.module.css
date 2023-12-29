@@ -4,7 +4,7 @@
 .first_section {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: end;
 }
 .first_section h1 {
   text-transform: capitalize;
@@ -32,7 +32,7 @@
   border: 1.2px solid #c6c6c6;
   border-collapse: separate;
   border-spacing: 0;
-  border-radius: 0.7rem;
+  border-radius: 1.5rem;
   overflow: hidden;
 }
 .table_container th {
@@ -43,7 +43,13 @@
 .product_headers {
   height: 10rem;
   width: 18rem;
-  background-color: #e6edff;
+  /* background-color: #e6edff; */
+}
+.product_headers h1 {
+  font-size: 1.2rem;
+  color: var(--green-color);
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
 }
 .product_headers h2 {
   font-size: 1rem;
@@ -60,12 +66,12 @@
   color: var(--black-color);
 }
 .table_container th {
-  padding: 0.6rem 2rem;
+  padding: 0.8rem 2rem;
   text-align: left;
   border: 0.2px solid #c6c6c6;
 }
 .table_container td {
-  padding: 0.6rem 2rem;
+  padding: 0.8rem 2rem;
   text-align: left;
   border: 0.2px solid #c6c6c6;
 }

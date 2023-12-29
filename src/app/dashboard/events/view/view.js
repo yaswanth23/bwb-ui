@@ -44,7 +44,7 @@ const View = ({ data }) => {
     <>
       <div className={styles.container}>
         <div className={styles.first_section}>
-          <h1>{data.eventname}</h1>
+          {/* <h1>{data.eventname}</h1> */}
           {eventDetails?.purchaseOrderUrl && (
             <a
               href={eventDetails.purchaseOrderUrl}
@@ -61,7 +61,9 @@ const View = ({ data }) => {
               <table className={styles.table_container}>
                 <tbody>
                   <tr>
-                    <th className={styles.product_headers}></th>
+                    <th className={styles.product_headers}>
+                      <h1>{data.eventname}</h1>
+                    </th>
                     {eventDetails.vendorComparisons.length > 0 ? (
                       eventDetails.vendorComparisons.map((vc, index) => (
                         <td key={index} className={styles.available_text}>
