@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useReducer } from "react";
 import styles from "./view.module.css";
+import Modal from "react-modal";
 import { useSelector } from "react-redux";
 import { selectUserData } from "@/store/user/user.selector";
 import {
@@ -12,6 +13,11 @@ import {
 const View = ({ data }) => {
   const userData = useSelector(selectUserData);
   const [eventDetails, setEventDetails] = useState(null);
+  const [modalOneIsOpen, setModalOneIsOpen] = useState(false);
+  const [counterData, setCounterData] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [counterPrice, setCounterPrice] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,6 +29,18 @@ const View = ({ data }) => {
 
     fetchData();
   }, [data]);
+
+  const openModalOne = (vendoruserid) => {
+    const vendor = eventDetails.vendorComparisons.find(
+      (vendor) => vendor.vendoruserid === vendoruserid
+    );
+    setCounterData(vendor);
+    setModalOneIsOpen(true);
+  };
+
+  const closeModalOne = () => {
+    setModalOneIsOpen(false);
+  };
 
   const handleProductStausChange = async (vendorUserId, status) => {
     const request = {
@@ -38,6 +56,10 @@ const View = ({ data }) => {
     if (response?.data?.statusCode === 200) {
       setEventDetails(response.data.eventDetails);
     }
+  };
+
+  const handleCounterPriceSubmit = () => {
+    console.log("---1");
   };
 
   return (
@@ -87,12 +109,9 @@ const View = ({ data }) => {
                                 </button>
                                 <button
                                   className={styles.counter_btn}
-                                  // onClick={() =>
-                                  //   handleProductStausChange(
-                                  //     vc.vendoruserid,
-                                  //     "ACCEPTED"
-                                  //   )
-                                  // }
+                                  onClick={() => {
+                                    openModalOne(vc.vendoruserid);
+                                  }}
                                 >
                                   Counter
                                 </button>
@@ -224,6 +243,85 @@ const View = ({ data }) => {
           )}
         </div>
       </div>
+      <Modal
+        isOpen={modalOneIsOpen}
+        onRequestClose={closeModalOne}
+        preventScroll={true}
+        style={{
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
+          },
+          content: {
+            padding: 0,
+            border: "none",
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+          },
+        }}
+        ariaHideApp={false}
+      >
+        <div className={styles.modal_one_container}>
+          {counterData && (
+            <>
+              <h1 className={styles.modal_header}>
+                {counterData.organisationname}
+              </h1>
+              <p className={styles.modal_sub_text}>
+                Please select the product you wish to provide a counter price
+                for:
+              </p>
+              <select onChange={(e) => setSelectedProduct(e.target.value)}>
+                <option value="">Select a product</option>
+                {counterData.productQuotes.map((product, index) => (
+                  <option key={index} value={index}>
+                    {product.product}
+                  </option>
+                ))}
+              </select>
+              {selectedProduct && (
+                <>
+                  <div className={styles.product_data_container}>
+                    <p className={styles.product_content}>
+                      <h1>Product:</h1>
+                      {counterData.productQuotes[selectedProduct].product}
+                    </p>
+                    <p className={styles.product_content}>
+                      <h1>Price:</h1>
+                      &#8377; {counterData.productQuotes[selectedProduct].price}
+                    </p>
+                    <p className={styles.product_content}>
+                      <h1>Quantity:</h1>
+                      {counterData.productQuotes[selectedProduct].quantity}
+                    </p>
+                  </div>
+                  <div className={styles.product_counter_container}>
+                    <label htmlFor="counterPrice">Counter Price:</label>
+                    <input
+                      type="text"
+                      id="counterPrice"
+                      placeholder="Enter counter price"
+                      onChange={(e) => setCounterPrice(e.target.value)}
+                    />
+                  </div>
+                  <span className={styles.error_message_txt}>
+                    {errorMessage}
+                  </span>
+                  <button
+                    className={styles.submit_button}
+                    onClick={() => handleCounterPriceSubmit()}
+                  >
+                    Submit
+                  </button>
+                </>
+              )}
+            </>
+          )}
+        </div>
+      </Modal>
     </>
   );
 };

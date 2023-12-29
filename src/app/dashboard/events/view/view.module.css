@@ -4,7 +4,7 @@
 .first_section {
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
 }
 .first_section h1 {
   text-transform: capitalize;
@@ -161,4 +161,80 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.modal_one_container {
+  width: 30rem;
+  padding: 1rem;
+}
+.modal_header {
+  color: var(--primary-color);
+  font-size: 1rem;
+}
+.modal_sub_text {
+  margin: 0.5rem 0;
+  font-size: 0.8rem;
+}
+.modal_one_container select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  border: 1px solid var(--black-color);
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  color: #333;
+  background-color: #fff;
+  font-family: "Montserrat";
+}
+.product_data_container {
+  margin-top: 1rem;
+}
+.product_content {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+.product_content h1 {
+  font-size: 0.95rem;
+}
+.product_counter_container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.product_counter_container label {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+.product_counter_container input {
+  font-size: 0.8rem;
+  border: 1px solid var(--black-color);
+  background: transparent;
+  border-radius: 0.4rem;
+  padding: 0.4rem;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 0.5rem;
+}
+.error_message_txt {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--red-color);
+}
+.submit_button {
+  font-family: "Montserrat", sans-serif;
+  background-color: var(--green-color);
+  color: var(--white-color);
+  text-decoration: none;
+  cursor: pointer;
+  padding: 1rem 3rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: none;
+  border-radius: 0.5rem;
 }
