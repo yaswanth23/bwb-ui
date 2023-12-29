@@ -29,10 +29,10 @@
   overflow-x: auto;
 }
 .table_container {
-  border: 1.2px solid var(--black-color);
+  border: 1.2px solid #c6c6c6;
   border-collapse: separate;
   border-spacing: 0;
-  border-radius: 0.5rem;
+  border-radius: 0.7rem;
   overflow: hidden;
 }
 .table_container th {
@@ -62,12 +62,12 @@
 .table_container th {
   padding: 0.6rem 2rem;
   text-align: left;
-  border: 1px solid var(--black-color);
+  border: 0.2px solid #c6c6c6;
 }
 .table_container td {
   padding: 0.6rem 2rem;
   text-align: left;
-  border: 1px solid var(--black-color);
+  border: 0.2px solid #c6c6c6;
 }
 .no_available_text {
   font-size: 1rem;
