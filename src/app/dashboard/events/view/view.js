@@ -2,12 +2,15 @@
 
 import React, { useEffect, useState, useReducer } from "react";
 import styles from "./view.module.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Modal from "react-modal";
 import { useSelector } from "react-redux";
 import { selectUserData } from "@/store/user/user.selector";
 import {
   getUserEventDetails,
   changeUserProductStatus,
+  submitCounterPrice,
 } from "@/utils/api/event";
 
 const View = ({ data }) => {
@@ -58,8 +61,26 @@ const View = ({ data }) => {
     }
   };
 
-  const handleCounterPriceSubmit = () => {
-    console.log("---1");
+  const handleCounterPriceSubmit = async (vendorUserId, productId) => {
+    if (!counterPrice) {
+      setErrorMessage("Please Enter counter price");
+    }
+
+    if (counterPrice) {
+      setErrorMessage("");
+      let request = {
+        userId: userData.userId,
+        vendorUserId: vendorUserId,
+        productId: productId,
+        counterPrice: Number(counterPrice),
+      };
+      await submitCounterPrice(request);
+      closeModalOne();
+      toast.success("Counter price submitted Successfully", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 3000,
+      });
+    }
   };
 
   return (
@@ -312,7 +333,12 @@ const View = ({ data }) => {
                   </span>
                   <button
                     className={styles.submit_button}
-                    onClick={() => handleCounterPriceSubmit()}
+                    onClick={() =>
+                      handleCounterPriceSubmit(
+                        counterData.productQuotes[selectedProduct].vendorUserId,
+                        counterData.productQuotes[selectedProduct].productid
+                      )
+                    }
                   >
                     Submit
                   </button>
@@ -322,6 +348,14 @@ const View = ({ data }) => {
           )}
         </div>
       </Modal>
+      <ToastContainer
+        toastStyle={{
+          borderRadius: "0.5rem",
+          fontFamily: "Montserrat",
+          color: "#000000",
+          fontSize: "1rem",
+        }}
+      />
     </>
   );
 };
