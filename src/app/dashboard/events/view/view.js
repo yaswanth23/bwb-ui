@@ -318,30 +318,54 @@ const View = ({ data }) => {
                       <h1>Quantity:</h1>
                       {counterData.productQuotes[selectedProduct].quantity}
                     </p>
+                    <p className={styles.product_content}>
+                      <h1>Status:</h1>
+                      {counterData.productQuotes[
+                        selectedProduct
+                      ].vendorstatus.toLowerCase()}
+                    </p>
                   </div>
-                  <div className={styles.product_counter_container}>
-                    <label htmlFor="counterPrice">Counter Price:</label>
-                    <input
-                      type="text"
-                      id="counterPrice"
-                      placeholder="Enter counter price"
-                      onChange={(e) => setCounterPrice(e.target.value)}
-                    />
-                  </div>
-                  <span className={styles.error_message_txt}>
-                    {errorMessage}
-                  </span>
-                  <button
-                    className={styles.submit_button}
-                    onClick={() =>
-                      handleCounterPriceSubmit(
-                        counterData.productQuotes[selectedProduct].vendorUserId,
-                        counterData.productQuotes[selectedProduct].productid
-                      )
-                    }
-                  >
-                    Submit
-                  </button>
+                  {counterData.productQuotes[selectedProduct].counterprice !==
+                  null ? (
+                    <>
+                      <div className={styles.product_counter_container}>
+                        <label htmlFor="counterPrice">Counter Price:</label>
+                        <p>
+                          {
+                            counterData.productQuotes[selectedProduct]
+                              .counterprice
+                          }
+                        </p>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className={styles.product_counter_container}>
+                        <label htmlFor="counterPrice">Counter Price:</label>
+                        <input
+                          type="text"
+                          id="counterPrice"
+                          placeholder="Enter counter price"
+                          onChange={(e) => setCounterPrice(e.target.value)}
+                        />
+                      </div>
+                      <span className={styles.error_message_txt}>
+                        {errorMessage}
+                      </span>
+                      <button
+                        className={styles.submit_button}
+                        onClick={() =>
+                          handleCounterPriceSubmit(
+                            counterData.productQuotes[selectedProduct]
+                              .vendorUserId,
+                            counterData.productQuotes[selectedProduct].productid
+                          )
+                        }
+                      >
+                        Submit
+                      </button>
+                    </>
+                  )}
                 </>
               )}
             </>
