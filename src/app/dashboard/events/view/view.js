@@ -206,14 +206,28 @@ const View = ({ data }) => {
                           const quote = vendor.productQuotes.find(
                             (quote) => quote.productid === item.productid
                           );
-                          return (
-                            <td
-                              key={vendor.vendoruserid}
-                              className={styles.vendor_context}
-                            >
-                              &#8377; {quote.price}
-                            </td>
-                          );
+                          if (quote.vendorstatus === "ACCEPTED") {
+                            return (
+                              <td
+                                key={vendor.vendoruserid}
+                                className={styles.counter_context}
+                              >
+                                <span className={styles.strike_out_price}>
+                                  &#8377; {quote.price}
+                                </span>
+                                &#8377; {quote.counterprice}
+                              </td>
+                            );
+                          } else {
+                            return (
+                              <td
+                                key={vendor.vendoruserid}
+                                className={styles.vendor_context}
+                              >
+                                &#8377; {quote.price}
+                              </td>
+                            );
+                          }
                         })}
                       </tr>
                       <tr>

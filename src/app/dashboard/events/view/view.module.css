@@ -94,6 +94,16 @@
   font-size: 0.9rem;
   font-weight: 500;
 }
+.counter_context {
+  font-size: 0.9rem;
+  font-weight: 700;
+  display: grid;
+}
+.strike_out_price {
+  text-decoration: line-through;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
 .total_price {
   font-size: 0.9rem;
   font-weight: 700;
